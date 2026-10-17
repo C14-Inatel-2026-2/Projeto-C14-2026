@@ -27,5 +27,11 @@ pipeline {
                 }
             }
         }
+        stage('Code Coverage') {
+            steps {
+                bat 'mvn -B jacoco:report'
+                archiveArtifacts artifacts: 'target/site/jacoco/**', fingerprint: true
+            }
+        }
     }
 }
