@@ -33,5 +33,12 @@ pipeline {
                 archiveArtifacts artifacts: 'target/site/jacoco/**', fingerprint: true
             }
         }
+        stage('Package') {
+            steps {
+                bat 'mvn -B package -DskipTests'
+                archiveArtifacts artifacts: 'target/*.jar', fingerprint: true
+            }
+        }
+
     }
 }
