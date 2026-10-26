@@ -35,7 +35,7 @@ public class FilmesTest {
                 "Aventura"
         );
 
-        filmeTeste.setNota(15.0f);
+        filmeTeste.validarNota(15.0f);
     }
 
     @Test(expected = IllegalArgumentException.class)
@@ -51,7 +51,7 @@ public class FilmesTest {
                 "Aventura"
         );
 
-        filmeTeste.setNota(-1f);
+        filmeTeste.validarNota(-1f);
     }
 
     @Test(expected = IllegalArgumentException.class)
@@ -67,7 +67,7 @@ public class FilmesTest {
                 "Aventura"
         );
 
-        filmeTeste.setDuracao(-20);
+        filmeTeste.validarDuracao(-20);
     }
 
     @Test(expected = IllegalArgumentException.class)
@@ -83,7 +83,7 @@ public class FilmesTest {
                 "Aventura"
         );
 
-        filmeTeste.setDuracao(0);
+        filmeTeste.validarDuracao(0);
     }
 
     @Test
@@ -141,6 +141,24 @@ public void deveAlterarNomeDoFilme() {
         filmeTeste.setAnoLancamento(2026);
 
         assertEquals(2026, filmeTeste.getAnoLancamento());
+    }
+
+    @Test
+    public void deveAtualizarNotaValida() {
+        Filmes filmeTeste = new Filmes(
+                "Filme Teste",
+                2025,
+                8.5f,
+                "Sinopse do filme teste",
+                "Diretor Teste",
+                120,
+                "Livre",
+                "Aventura"
+        );
+
+        filmeTeste.setNota(9.0f);
+
+        assertEquals(9.0f, filmeTeste.getNota(), 0.001f);
     }
 
     @Test

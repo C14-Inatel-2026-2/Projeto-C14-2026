@@ -61,10 +61,14 @@ public class Filmes {
             this.anoLancamento = anoLancamento;
         }
 
-        public void setNota(float nota) {
+        public void validarNota(float nota) {
             if (nota < 0 || nota > 10) {
                 throw new IllegalArgumentException("Nota deve estar entre 0 e 10");
             }
+        }
+
+        public void setNota(float nota) {
+            validarNota(nota);
             this.nota = nota;
         }
 
@@ -76,10 +80,14 @@ public class Filmes {
             this.diretor = diretor;
         }
 
-        public void setDuracao(int duracao) {
+        public void validarDuracao(int duracao) {
             if (duracao <= 0) {
                 throw new IllegalArgumentException("Duração deve ser maior que zero");
             }
+        }
+
+        public void setDuracao(int duracao) {
+            validarDuracao(duracao);
             this.duracao = duracao;
         }
 
