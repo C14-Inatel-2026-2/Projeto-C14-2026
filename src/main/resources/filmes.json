@@ -1,0 +1,152 @@
+[
+  {
+    "nome": "Titanic",
+    "anoLancamento": 1997,
+    "nota": 7.9,
+    "sinopse": "Um jovem artista e uma jovem de família rica se apaixonam durante a viagem do Titanic, enfrentando diferenças sociais e uma tragédia histórica.",
+    "diretor": "James Cameron",
+    "duracao": 194,
+    "classificacao": "12 anos",
+    "genero": "Romance / Aventura"
+  },
+  {
+    "nome": "Harry Potter e a Pedra Filosofal",
+    "anoLancamento": 2001,
+    "nota": 7.7,
+    "sinopse": "Harry Potter descobre que é um bruxo e começa a estudar em Hogwarts, onde faz amigos e desvenda o mistério de uma pedra poderosa.",
+    "diretor": "Chris Columbus",
+    "duracao": 152,
+    "classificacao": "Livre",
+    "genero": "Infantil / Fantasia"
+  },
+  {
+    "nome": "O Senhor dos Anéis: A Sociedade do Anel",
+    "anoLancamento": 2001,
+    "nota": 8.9,
+    "sinopse": "Frodo recebe a missão de destruir um anel perigoso e parte em uma jornada para impedir que uma força maligna domine a Terra-média.",
+    "diretor": "Peter Jackson",
+    "duracao": 178,
+    "classificacao": "12 anos",
+    "genero": "Fantasia / Aventura"
+  },
+  {
+    "nome": "Os Vingadores",
+    "anoLancamento": 2012,
+    "nota": 8.0,
+    "sinopse": "Um grupo de super-heróis precisa unir forças para enfrentar Loki e impedir uma invasão que ameaça a humanidade.",
+    "diretor": "Joss Whedon",
+    "duracao": 143,
+    "classificacao": "12 anos",
+    "genero": "Ação / Aventura"
+  },
+  {
+    "nome": "Batman: O Cavaleiro das Trevas",
+    "anoLancamento": 2008,
+    "nota": 9.0,
+    "sinopse": "Batman enfrenta o Coringa, um criminoso imprevisível que coloca Gotham City em caos e desafia os limites morais de seus habitantes.",
+    "diretor": "Christopher Nolan",
+    "duracao": 152,
+    "classificacao": "12 anos",
+    "genero": "Ação / Crime"
+  },
+  {
+    "nome": "Interestelar",
+    "anoLancamento": 2014,
+    "nota": 8.7,
+    "sinopse": "Com a Terra enfrentando uma crise ambiental, um grupo de exploradores viaja pelo espaço em busca de um planeta que possa abrigar a humanidade.",
+    "diretor": "Christopher Nolan",
+    "duracao": 169,
+    "classificacao": "10 anos",
+    "genero": "Ficção científica / Aventura"
+  },
+  {
+    "nome": "Matrix",
+    "anoLancamento": 1999,
+    "nota": 8.7,
+    "sinopse": "Neo, um programador que desconfia da realidade, descobre que o mundo em que vive é uma simulação controlada por máquinas.",
+    "diretor": "Lana Wachowski e Lilly Wachowski",
+    "duracao": 136,
+    "classificacao": "14 anos",
+    "genero": "Ficção científica / Ação"
+  },
+  {
+    "nome": "Jurassic Park: O Parque dos Dinossauros",
+    "anoLancamento": 1993,
+    "nota": 8.2,
+    "sinopse": "Cientistas recriam dinossauros em um parque temático, mas uma falha de segurança transforma a visita em uma luta pela sobrevivência.",
+    "diretor": "Steven Spielberg",
+    "duracao": 127,
+    "classificacao": "12 anos",
+    "genero": "Aventura / Ficção científica"
+  },
+  {
+    "nome": "O Rei Leão",
+    "anoLancamento": 1994,
+    "nota": 8.5,
+    "sinopse": "Simba, um jovem leão, precisa superar a perda do pai e enfrentar seu passado para recuperar seu lugar como rei.",
+    "diretor": "Roger Allers e Rob Minkoff",
+    "duracao": 88,
+    "classificacao": "Livre",
+    "genero": "Infantil / Musical"
+  },
+  {
+    "nome": "Toy Story",
+    "anoLancamento": 1995,
+    "nota": 8.3,
+    "sinopse": "Woody e Buzz Lightyear, dois brinquedos com personalidades diferentes, precisam aprender a trabalhar juntos quando se encontram longe de casa.",
+    "diretor": "John Lasseter",
+    "duracao": 81,
+    "classificacao": "Livre",
+    "genero": "Infantil / Comédia"
+  },
+  {
+    "nome": "Avatar",
+    "anoLancamento": 2009,
+    "nota": 7.9,
+    "sinopse": "Um ex-fuzileiro participa de uma missão em Pandora, onde entra em contato com os Na'vi e precisa decidir entre os interesses humanos e a preservação daquele mundo.",
+    "diretor": "James Cameron",
+    "duracao": 162,
+    "classificacao": "12 anos",
+    "genero": "Ficção científica / Ação"
+  },
+  {
+    "nome": "Forrest Gump",
+    "anoLancamento": 1994,
+    "nota": 8.8,
+    "sinopse": "Um homem de coração generoso relembra sua trajetória extraordinária, marcada por encontros inesperados e acontecimentos importantes da história dos Estados Unidos.",
+    "diretor": "Robert Zemeckis",
+    "duracao": 142,
+    "classificacao": "14 anos",
+    "genero": "Romance / Comédia"
+  },
+  {
+    "nome": "Velozes & Furiosos",
+    "anoLancamento": 2001,
+    "nota": 6.8,
+    "sinopse": "Um policial infiltrado no universo das corridas de rua aproxima-se de uma equipe de pilotos enquanto investiga uma série de roubos.",
+    "diretor": "Rob Cohen",
+    "duracao": 106,
+    "classificacao": "12 anos",
+    "genero": "Ação / Crime"
+  },
+  {
+    "nome": "Coringa",
+    "anoLancamento": 2019,
+    "nota": 8.3,
+    "sinopse": "Arthur Fleck, um homem socialmente isolado que sonha em ser comediante, enfrenta uma sequência de rejeições que transforma sua vida.",
+    "diretor": "Todd Phillips",
+    "duracao": 122,
+    "classificacao": "16 anos",
+    "genero": "Crime / Thriller"
+  },
+  {
+    "nome": "Invocação do Mal",
+    "anoLancamento": 2013,
+    "nota": 7.5,
+    "sinopse": "Dois investigadores paranormais ajudam uma família que relata acontecimentos aterrorizantes em sua casa, revelando uma presença sobrenatural.",
+    "diretor": "James Wan",
+    "duracao": 112,
+    "classificacao": "14 anos",
+    "genero": "Terror / Mistério"
+  }
+]
