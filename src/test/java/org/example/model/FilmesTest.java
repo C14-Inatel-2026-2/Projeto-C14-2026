@@ -23,67 +23,62 @@ public class FilmesTest {
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void naoDeveAceitarNotaMaiorQueDez(){
-        Filmes filmeTeste = new Filmes(
+    public void naoDeveAceitarNotaMaiorQueDez() {
+
+        // Fixture + Exercise
+        new Filmes(
                 "Filme Teste",
                 2025,
-                8.5f,
+                15.0f,
                 "Sinopse do filme teste",
                 "Diretor Teste",
                 120,
                 "Livre",
                 "Aventura"
         );
-
-        filmeTeste.validarNota(15.0f);
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void naoDeveAceitarNotaMenorQueZero() {
-        Filmes filmeTeste = new Filmes(
+        new Filmes(
                 "Filme Teste",
                 2025,
-                8.5f,
+                -1.0f,
                 "Sinopse do filme teste",
                 "Diretor Teste",
                 120,
                 "Livre",
                 "Aventura"
         );
-
-        filmeTeste.validarNota(-1f);
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void naoDeveAceitarDuracaoMenorQueZero(){
-        Filmes filmeTeste = new Filmes(
+    public void naoDeveAceitarDuracaoMenorQueZero() {
+
+        new Filmes(
                 "Filme Teste",
                 2025,
                 8.5f,
                 "Sinopse do filme teste",
                 "Diretor Teste",
-                120,
+                -20,
                 "Livre",
                 "Aventura"
         );
-
-        filmeTeste.validarDuracao(-20);
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void naoDeveAceitarDuracaoIgualZero(){
-        Filmes filmeTeste = new Filmes(
+    public void naoDeveAceitarDuracaoIgualZero() {
+        new Filmes(
                 "Filme Teste",
-                2025,
+                2018,
                 8.5f,
                 "Sinopse do filme teste",
                 "Diretor Teste",
-                120,
+                0,
                 "Livre",
-                "Aventura"
+                "Romance"
         );
-
-        filmeTeste.validarDuracao(0);
     }
 
     @Test
