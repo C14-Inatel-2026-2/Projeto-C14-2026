@@ -11,6 +11,10 @@ public class Filmes {
     private String genero;
 
     public Filmes(String nome, int anoLancamento, float nota, String sinopse, String diretor, int duracao, String classificacao, String genero) {
+
+        validarNota(nota);
+        validarDuracao(duracao);
+
         this.nome = nome;
         this.anoLancamento = anoLancamento;
         this.nota = nota;
