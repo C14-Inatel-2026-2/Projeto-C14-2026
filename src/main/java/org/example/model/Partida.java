@@ -5,33 +5,61 @@ public class Partida {
     private int id;
     private int pontuacaoTotal;
     private boolean status;
+    private int rodadas;
+    private static final int limiteRodadas = 5;
 
 
-public Partida(int id) {
-    this.id = id;
-    this.pontuacaoTotal = 0;
-    this.status = true;
-}
+    public Partida(int id) {
+        if (id <= 0){
+            throw new IllegalArgumentException( "O ID deve ser positivo" );
+        }
 
-public int getId() {
+        this.id = id;
+        this.pontuacaoTotal = 0;
+        this.status = true;
+        this.rodadas = 0;
+    }
+
+    public int getId() {
     return id;
 }
 
-public int getPontuacaoTotal() {
+    public int getPontuacaoTotal() {
     return pontuacaoTotal;
 }
 
-public boolean isStatus() {
+    public boolean isStatus() {
     return status;
 }
 
-public void adicionarPontuacao(int pontos) {
-    if (pontos < 0) {
-        throw new IllegalArgumentException("A pontuação não pode ser negativa");
+    public int getRodadas(){
+        return rodadas;
     }
 
-    this.pontuacaoTotal += pontos;
-}
+    public void adicionarPontuacao(int pontos) {
+
+        if(!status){
+            throw new IllegalStateException( "A partida já foi finalizada" );
+        }
+
+        if (pontos < 0) {
+            throw new IllegalArgumentException( "A pontuação não pode ser negativa");
+        }
+
+        this.pontuacaoTotal += pontos;
+    }
+
+    public void avancarRodada(){
+        if(!status){
+            throw new IllegalStateException( " A partida já foi finalizada" );
+        }
+
+        rodadas ++;
+        if(rodadas >= limiteRodadas){
+            finalizar();
+        }
+
+    }
 
     public void finalizar() {
         this.status = false;
@@ -40,6 +68,5 @@ public void adicionarPontuacao(int pontos) {
     public boolean estaAtiva() {
         return status;
     }
-
 
 }
