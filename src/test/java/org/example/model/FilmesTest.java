@@ -23,35 +23,33 @@ public class FilmesTest {
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void naoDeveAceitarNotaMaiorQueDez(){
-        Filmes filmeTeste = new Filmes(
+    public void naoDeveAceitarNotaMaiorQueDez() {
+
+        // Fixture + Exercise
+        new Filmes(
                 "Filme Teste",
                 2025,
-                8.5f,
+                15.0f,
                 "Sinopse do filme teste",
                 "Diretor Teste",
                 120,
                 "Livre",
                 "Aventura"
         );
-
-        filmeTeste.validarNota(15.0f);
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void naoDeveAceitarNotaMenorQueZero() {
-        Filmes filmeTeste = new Filmes(
+        new Filmes(
                 "Filme Teste",
                 2025,
-                8.5f,
+                -1.0f,
                 "Sinopse do filme teste",
                 "Diretor Teste",
                 120,
                 "Livre",
                 "Aventura"
         );
-
-        filmeTeste.validarNota(-1f);
     }
 
     @Test(expected = IllegalArgumentException.class)
