@@ -8,7 +8,7 @@ public class UsuarioTest {
 
     @Test
     public void CadastroUsuario(){
-        Usuario usuarioTest = new Usuario(
+        Usuario usuarioTest = new Jogador(
                 "João",
                 "Joao@email.com",
                 "senhaSuperSegura123"
@@ -22,7 +22,7 @@ public class UsuarioTest {
 
     @Test
     public void MudarPerfil(){
-        Usuario usuarioTest = new Usuario(
+        Usuario usuarioTest = new Jogador(
                 "João",
                 "Joao@email.com",
                 "senhaSuperSegura123"
@@ -36,7 +36,7 @@ public class UsuarioTest {
     @Test
     public void SenhaMinimo7Caracteres(){
         assertThrows(IllegalArgumentException.class, () -> {
-            new Usuario(
+            new Jogador(
                     "João",
                     "joao@email.com",
                     "123456"
@@ -46,7 +46,7 @@ public class UsuarioTest {
 
     @Test
     public void MudarSenha(){
-        Usuario usuarioTest = new Usuario(
+        Usuario usuarioTest = new Jogador(
                 "João",
                 "Joao@email.com",
                 "senhaSuperSegura123"
@@ -59,7 +59,7 @@ public class UsuarioTest {
 
     @Test
     public void SenhasDiferentes(){
-        Usuario usuarioTest = new Usuario(
+        Usuario usuarioTest = new Jogador(
                 "João",
                 "Joao@email.com",
                 "senhaSuperSegura123"

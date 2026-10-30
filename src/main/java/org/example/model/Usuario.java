@@ -1,6 +1,6 @@
 package org.example.model;
 
-public class Usuario {
+public abstract class Usuario {
 
     private int id;
     private String nome;
@@ -16,13 +16,13 @@ public class Usuario {
     }
 
     public void MudarPerfil(String perfil){
-        setPerfil(perfil);
+        this.perfil = perfil;
     }
 
     public void CadastroSenha(String senha){
         if (senha == null || senha.length() < 7) {
             throw new IllegalArgumentException(
-                    "A senha deve conter no mínimo 5 caracteres"
+                    "A senha deve conter no mínimo 7 caracteres"
             );
         }
         else
@@ -30,7 +30,7 @@ public class Usuario {
     }
 
     public void MudarSenha(String senha1, String senha2){
-        if (!senha1.equals(senha2) || senha1 == null){
+        if (senha1 == null || !senha1.equals(senha2)){
             throw new IllegalArgumentException(
                     "As senhas inseridas são diferentes"
             );
@@ -46,6 +46,4 @@ public class Usuario {
     public String getSenha() { return senha; }
 
     public String getPerfil() { return perfil; }
-
-    public void setPerfil(String perfil) { this.perfil = perfil; }
 }
