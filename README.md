@@ -93,6 +93,47 @@ Permitir que o jogador informe um palpite para a nota do filme apresentado em ca
 5. O palpite deve ser associado ao jogador e à rodada correspondente.
 
 
+### US-05 — Calcular pontuação
+
+**Título:** Calcular pontuação.
+
+**História de usuário:**
+
+Como jogador, quero que o sistema calcule minha pontuação com base na diferença entre meu palpite e a nota real do filme no IMDb, para que eu possa acompanhar meu desempenho durante a partida.
+
+**Descrição da funcionalidade:**
+
+Calcular a pontuação obtida pelo jogador em cada rodada, considerando a diferença entre a nota oficial do filme no IMDb e o palpite informado. Quanto menor a diferença entre as notas, maior será a pontuação recebida.
+
+A pontuação máxima por rodada será de 100 pontos, e o cálculo deverá garantir que o jogador nunca receba uma pontuação negativa.
+
+**Critérios de aceite:**
+
+1. O sistema deve calcular a pontuação após o envio de um palpite válido.
+2. O sistema deve comparar o palpite informado pelo jogador com a nota oficial do filme no IMDb.
+3. O sistema deve atribuir 100 pontos caso o jogador acerte exatamente a nota do filme.
+4. O sistema deve descontar pontos proporcionalmente à diferença entre o palpite e a nota real.
+5. A pontuação obtida nunca poderá ser inferior a 0 pontos.
+6. O sistema deve apresentar a pontuação obtida pelo jogador na rodada.
+
+**Regra de cálculo da pontuação:**
+
+A pontuação será determinada pela seguinte fórmula:
+
+P = max(0, PM - (|NF - NJ| × 10))
+
+Onde:
+
+- P = Pontuação recebida pelo jogador.
+- PM = Pontuação máxima da rodada (100 pontos).
+- NF = Nota oficial do filme no IMDb.
+- NJ = Nota informada pelo jogador.
+
+A cada 0,1 ponto de diferença entre o palpite e a nota real, será descontado 1 ponto da pontuação máxima.
+
+Os palpites deverão possuir apenas uma casa decimal.
+
+
 ### US-06 — Gerenciar resultados e gerar pódio da partida
 
 **Responsável:** Ana
