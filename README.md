@@ -7,7 +7,22 @@ O projeto consiste no desenvolvimento de um jogo de adivinhação de notas de fi
 Antes do início da partida, os jogadores informam seus nomes e configuram a quantidade de rodadas e participantes. Durante o jogo, o sistema apresenta filmes selecionados aleatoriamente, sem repetições na mesma partida. Cada jogador envia seu palpite e recebe uma pontuação de acordo com a proximidade entre sua estimativa e a nota correta do filme.
 
 Ao final da partida, o sistema apresenta a pontuação dos participantes e gera um pódio com a classificação final dos jogadores. Os resultados são armazenados temporariamente durante a execução da partida e descartados após seu encerramento, sem manter um histórico permanente.
-## 2. Requisitos Funcionais (RF)
+
+## 2. Tecnologias utilizadas
+
+Java: linguagem de programação utilizada no desenvolvimento da lógica do jogo.
+
+Maven: Ferramenta utilizada para o gerenciamento das dependências e a organização do processo de construção do projeto Java.
+
+Jenkins: Ferramenta utilizada para a criação e execução do pipeline de integração contínua (CI).
+
+Git e GitHub: ferramentas utilizadas para versionamento do código e colaboração entre os integrantes.
+
+Jira: plataforma utilizada para organizar o Product Backlog, planejar as Sprints e acompanhar as histórias de usuário.
+
+Scrum: metodologia ágil adotada para o planejamento e o gerenciamento das atividades do projeto.
+
+## 3. Requisitos Funcionais (RF)
 
 Os requisitos funcionais descrevem as funcionalidades que o sistema deve oferecer.
 
@@ -30,7 +45,7 @@ Os requisitos não funcionais descrevem características de qualidade e restriç
 - **RNF05 – Compatibilidade:** O sistema deve funcionar adequadamente no ambiente e nas plataformas definidos para sua implementação.
 - **RNF06 – Manutenibilidade:** O código deve ser organizado e estruturado de forma a facilitar futuras correções e melhorias.
 
-## Planejamento e Gerenciamento — Scrum (Jira)
+## Planejamento e Gerenciamento — Scrum 
 
 O planejamento e o acompanhamento das atividades do projeto Movie Guesser são realizados utilizando a metodologia ágil Scrum, no Jira.
 
@@ -55,6 +70,28 @@ Permitir que o jogador configure os parâmetros da partida antes de seu início,
 3. Validar se as quantidades informadas estão dentro dos limites permitidos pelo sistema.
 4. Impedir o início da partida caso a configuração seja inválida.
 5. Garantir que a partida respeite a quantidade de rodadas e participantes selecionada.
+
+
+### US-04 — Enviar palpite
+
+**Título:** Enviar palpite.
+
+**História de usuário:**
+
+Como jogador, quero informar um palpite entre 0 e 10 para a nota de um filme, para participar da rodada e tentar acertar sua avaliação correta.
+
+**Descrição da funcionalidade:**
+
+Permitir que o jogador informe um palpite para a nota do filme apresentado em cada rodada. O sistema deverá validar o valor informado antes de registrá-lo, garantindo que o palpite esteja dentro do intervalo permitido e seja associado ao jogador e à rodada correspondente.
+
+**Critérios de aceite:**
+
+1. O sistema deve permitir que o jogador informe um valor entre 0 e 10.
+2. O sistema deve aceitar valores decimais, caso estejam previstos nas regras do jogo.
+3. O sistema não deve aceitar valores menores que 0 ou maiores que 10.
+4. O sistema deve validar o palpite antes de registrá-lo.
+5. O palpite deve ser associado ao jogador e à rodada correspondente.
+
 
 ### US-06 — Gerenciar resultados e gerar pódio da partida
 
