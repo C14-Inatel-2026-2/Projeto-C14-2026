@@ -49,6 +49,26 @@ Os requisitos não funcionais descrevem características de qualidade e restriç
 
 O planejamento e o acompanhamento das atividades do projeto Movie Guesser são realizados utilizando a metodologia ágil Scrum, no Jira.
 
+## US-01 - Identificar Jogador
+
+**Responsável:** Vinícius Godoy
+
+**Título:** Identificar Jogador
+
+**História de usuário:** Como jogador, quero informar meu nome antes de iniciar uma partida, para que o sistema possa me identificar e associar minha participação aos resultados do jogo.
+
+**Descrição das funcionalidades:** 
+
+Permitir com que cada jogador possa se identificar dentro do cenário do jogo, para que outros jogadores consigam dizer quem é o jogador referente a tal pontuação atrelada à ele, facilitando a interatividade dentre os jogadores. 
+
+**Critérios de aceite:**
+1. O sistema deve permitir que o jogador informe seu nome.
+2. O sistema deve validar se o campo de nome foi preenchido.
+3. O sistema não deve permitir continuar caso o nome esteja vazio.
+4. O sistema deve associar o nome informado à partida e à pontuação do jogador.
+5. O nome deve aparecer nos resultados da partida.
+
+
 ### US-02 — Configurar partida
 
 **Responsável:** Mayara
@@ -72,7 +92,30 @@ Permitir que o jogador configure os parâmetros da partida antes de seu início,
 5. Garantir que a partida respeite a quantidade de rodadas e participantes selecionada.
 
 
+### US-03 - Selecionar filmes aleatoriamente sem repetição
+
+**Responsável:** Vinícius Godoy
+
+**Título:** Selecionar filmes aleatoriamente sem repetição
+
+**História de usuário:** 
+
+Como jogador, quero receber um filme selecionado aleatoriamente a cada rodada, sem que haja repetições na mesma partida, para ter uma experiência variada durante o jogo.
+
+**Descrição da funcionalidade:**
+
+Permitir que os jogadores possam jogar diferentes rodadas da partida sem com que o filme sorteado seja algum que já tenha sido sorteado em rodadas anteriores, mantendo o ritmo do jogo mais fluido e coerente.
+
+**Critérios de Aceite:**
+1. Ao iniciar uma rodada, o sistema deverá selecionar um filme aleatoriamente.
+2. Cada rodada deverá apresentar apenas um filme.
+3. Um filme já apresentado não poderá aparecer novamente durante a mesma partida.
+4. Ao finalizar as rodadas, o jogador deverá ter recebido um número de filmes diferentes referente ao número de rodadas jogadas.
+
+
 ### US-04 — Enviar palpite
+
+**Responsável:** Giovanna Cabral
 
 **Título:** Enviar palpite.
 
@@ -94,6 +137,8 @@ Permitir que o jogador informe um palpite para a nota do filme apresentado em ca
 
 
 ### US-05 — Calcular pontuação
+
+**Responsável:** João Selim
 
 **Título:** Calcular pontuação.
 
