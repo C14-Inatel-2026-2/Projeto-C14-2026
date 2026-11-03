@@ -7,70 +7,38 @@ import static org.junit.Assert.assertThrows;
 public class UsuarioTest {
 
     @Test
-    public void CadastroUsuario(){
+    public void CadastroJogador(){
         Usuario usuarioTest = new Jogador(
                 "João",
-                "Joao@email.com",
-                "senhaSuperSegura123"
+                0
         );
 
         assertEquals("João", usuarioTest.getNome());
-        assertEquals("Joao@email.com", usuarioTest.getEmail());
-        assertEquals("senhaSuperSegura123", usuarioTest.getSenha());
-        assertEquals("João", usuarioTest.getPerfil());
+        assertEquals(0, usuarioTest.getId());
+        assertEquals(0, usuarioTest.getPontuacao());
     }
 
     @Test
-    public void MudarPerfil(){
-        Usuario usuarioTest = new Jogador(
+    public void CadastroAdmin(){
+        Usuario usuarioTest = new Administrador(
                 "João",
-                "Joao@email.com",
-                "senhaSuperSegura123"
+                0
         );
 
-        usuarioTest.MudarPerfil("Pedro");
-
-        assertEquals("Pedro", usuarioTest.getPerfil());
+        assertEquals("João", usuarioTest.getNome());
+        assertEquals(0, usuarioTest.getId());
+        assertEquals(0, usuarioTest.getPontuacao());
     }
 
     @Test
-    public void SenhaMinimo7Caracteres(){
-        assertThrows(IllegalArgumentException.class, () -> {
-            new Jogador(
-                    "João",
-                    "joao@email.com",
-                    "123456"
-            );
-        });
-    }
-
-    @Test
-    public void MudarSenha(){
+    public void MudarNome(){
         Usuario usuarioTest = new Jogador(
                 "João",
-                "Joao@email.com",
-                "senhaSuperSegura123"
+                0
         );
 
-        usuarioTest.MudarSenha("EssaSenhaÉMaisForte", "EssaSenhaÉMaisForte");
+        usuarioTest.setNome("Pedro");
 
-        assertEquals("EssaSenhaÉMaisForte", usuarioTest.getSenha());
+        assertEquals("Pedro", usuarioTest.getNome());
     }
-
-    @Test
-    public void SenhasDiferentes(){
-        Usuario usuarioTest = new Jogador(
-                "João",
-                "Joao@email.com",
-                "senhaSuperSegura123"
-        );
-
-        assertThrows(IllegalArgumentException.class, () -> {
-            usuarioTest.MudarSenha(
-                    "senhaNova123",
-                    "senhaNova456"
-            );
-        });
-    }
-
 }
