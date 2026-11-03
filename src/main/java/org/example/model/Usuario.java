@@ -4,46 +4,21 @@ public abstract class Usuario {
 
     private int id;
     private String nome;
-    private String email;
-    private String senha;
-    private String perfil;
+    private int pontuacao;
 
-    public Usuario(String nome, String email, String senha) {
+    public Usuario(String nome, int id) {
+        this.id = id;
         this.nome = nome;
-        this.email = email;
-        CadastroSenha(senha);
-        this.perfil = nome;
+        this.pontuacao = 0;
     }
 
-    public void MudarPerfil(String perfil){
-        this.perfil = perfil;
-    }
-
-    public void CadastroSenha(String senha){
-        if (senha == null || senha.length() < 7) {
-            throw new IllegalArgumentException(
-                    "A senha deve conter no mínimo 7 caracteres"
-            );
-        }
-        else
-            this.senha = senha;
-    }
-
-    public void MudarSenha(String senha1, String senha2){
-        if (senha1 == null || !senha1.equals(senha2)){
-            throw new IllegalArgumentException(
-                    "As senhas inseridas são diferentes"
-            );
-        }else
-            CadastroSenha(senha1);
-    }
-
+    public int getId() { return id; }
 
     public String getNome() { return nome; }
 
-    public String getEmail() { return email; }
+    public void setNome(String nome) { this.nome = nome; }
 
-    public String getSenha() { return senha; }
+    public int getPontuacao() { return pontuacao; }
 
-    public String getPerfil() { return perfil; }
+    public void setPontuacao(int pontuacao) { this.pontuacao = pontuacao; }
 }
