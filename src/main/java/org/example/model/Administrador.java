@@ -6,10 +6,10 @@ public class Administrador extends Usuario{
         super(nome, id);
     }
 
-    public void AddJogador(String nome){
-        // precisa criar variavel global chamada proximoId pra controlar quantos já existem e garantir que nenhum id se repita
+    public Jogador AddJogador(String nome){
+        Jogador novoJogador = new Jogador(nome, VariaveisGlobais.proximoId);
+        VariaveisGlobais.proximoId++;
 
-        // proximoId++;
-        // Jogador novoJogador = new Jogador(nome, proximoId);
+        return novoJogador;
     }
 }

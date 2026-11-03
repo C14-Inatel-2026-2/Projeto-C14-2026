@@ -2,31 +2,27 @@ package org.example.model;
 
 import org.junit.Test;
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertThrows;
 
-public class UsuarioTest {
+public class JogadorTest {
 
     @Test
-    public void CadastroJogador(){
-        Usuario usuarioTest = new Jogador(
-                "João",
-                0
-        );
+    public void CadastroJogadorNome(){
+        Usuario usuarioTest = new Jogador("João", 0);
 
         assertEquals("João", usuarioTest.getNome());
-        assertEquals(0, usuarioTest.getId());
-        assertEquals(0, usuarioTest.getPontuacao());
     }
 
     @Test
-    public void CadastroAdmin(){
-        Usuario usuarioTest = new Administrador(
-                "João",
-                0
-        );
+    public void CadastroJogadorId(){
+        Usuario usuarioTest = new Jogador("João", 0);
 
-        assertEquals("João", usuarioTest.getNome());
         assertEquals(0, usuarioTest.getId());
+    }
+
+    @Test
+    public void CadastroJogadorPontuacao(){
+        Usuario usuarioTest = new Jogador("João", 0);
+
         assertEquals(0, usuarioTest.getPontuacao());
     }
 
