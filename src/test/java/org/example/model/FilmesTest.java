@@ -231,4 +231,121 @@ public void deveAlterarNomeDoFilme() {
 
         assertEquals("14 anos", filmeteste.getClassificacao());
     }
+
+
+    @Test(expected = IllegalArgumentException.class)
+    public void validarNotaDeveRejeitarNotaMaiorQueDez() {
+
+        Filmes filmeTeste = new Filmes(
+                "Filme Teste",
+                2025,
+                8.5f,
+                "Sinopse do filme teste",
+                "Diretor Teste",
+                120,
+                "Livre",
+                "Aventura"
+        );
+
+        filmeTeste.validarNota(15.0f);
+
+    }
+
+    @Test
+    public void validarNotaDeveAceitarNotaIgualZero() {
+
+        Filmes filmeTeste = new Filmes(
+                "Filme Teste",
+                2025,
+                8.5f,
+                "Sinopse do filme teste",
+                "Diretor Teste",
+                120,
+                "Livre",
+                "Aventura"
+        );
+
+
+        filmeTeste.validarNota(0.0f);
+    }
+
+    @Test
+    public void validarNotaDeveAceitarNotaIgualDez() {
+
+        // Fixture
+        Filmes filmeTeste = new Filmes(
+                "Filme Teste",
+                2025,
+                8.5f,
+                "Sinopse do filme teste",
+                "Diretor Teste",
+                120,
+                "Livre",
+                "Aventura"
+        );
+
+        // Exercise
+        filmeTeste.validarNota(10.0f);
+
+        // Assertion: o método deve terminar sem lançar exceção.
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void validarDuracaoDeveRejeitarDuracaoNegativa() {
+
+        Filmes filmeTeste = new Filmes(
+                "Filme Teste",
+                2025,
+                8.5f,
+                "Sinopse do filme teste",
+                "Diretor Teste",
+                120,
+                "Livre",
+                "Aventura"
+        );
+
+        filmeTeste.validarDuracao(-20);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void validarDuracaoDeveRejeitarDuracaoIgualZero() {
+
+        Filmes filmeTeste = new Filmes(
+                "Filme Teste",
+                2025,
+                8.5f,
+                "Sinopse do filme teste",
+                "Diretor Teste",
+                120,
+                "Livre",
+                "Aventura"
+        );
+
+        filmeTeste.validarDuracao(0);
+
+    }
+
+    @Test
+    public void validarDuracaoDeveAceitarDuracaoValida() {
+
+        // Fixture
+        Filmes filmeTeste = new Filmes(
+                "Filme Teste",
+                2025,
+                8.5f,
+                "Sinopse do filme teste",
+                "Diretor Teste",
+                120,
+                "Livre",
+                "Aventura"
+        );
+
+        // Exercise
+        filmeTeste.validarDuracao(150);
+
+        // Assertion: o método deve terminar sem lançar exceção.
+    }
+
+
+
 }
