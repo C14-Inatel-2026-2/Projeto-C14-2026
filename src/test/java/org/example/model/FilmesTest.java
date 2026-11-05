@@ -122,6 +122,11 @@ public class FilmesTest {
         filmeTeste.validarNota(0.0f);
     }
 
+    @Test(expected = IllegalArgumentException.class)
+    public void validarNotaDeveRejeitarNotaNegativa() {
+        filmeTeste.validarNota(-1.0f);
+    }
+
     @Test
     public void validarNotaDeveAceitarNotaIgualDez() {
 
@@ -143,9 +148,9 @@ public class FilmesTest {
 
     @Test
     public void validarDuracaoDeveAceitarDuracaoValida() {
+
         filmeTeste.validarDuracao(150);
     }
-
 
 
 }
