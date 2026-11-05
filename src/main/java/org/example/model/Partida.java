@@ -6,18 +6,39 @@ public class Partida {
     private int pontuacaoTotal;
     private boolean status;
     private int rodadas;
-    private static final int limiteRodadas = 5;
+    private int limiteRodadas;
+    private int numeroParticipantes;
+    private boolean encerrada;
 
 
-    public Partida(int id) {
+    public Partida(int id, int numeroParticipantes, int limiteRodadas) {
         if (id <= 0){
             throw new IllegalArgumentException( "O ID deve ser positivo" );
         }
 
+        if (numeroParticipantes < 1 || numeroParticipantes > 8){
+            throw new IllegalArgumentException("Quantidade de participantes inválida");
+        }
+
+        if (limiteRodadas < 1 || limiteRodadas > 10){
+            throw new IllegalArgumentException("Quantidade de rodadas inválida");
+        }
+
         this.id = id;
+        this.numeroParticipantes = numeroParticipantes;
+        this.limiteRodadas = limiteRodadas;
         this.pontuacaoTotal = 0;
-        this.status = true;
         this.rodadas = 0;
+        this.status = false;
+        this.encerrada = false;
+    }
+
+    public void iniciar(){
+        if(status || encerrada){
+            throw new IllegalStateException("A partida já foi iniciada ou encerrada");
+        }
+
+        this.status = true;
     }
 
     public int getId() {
@@ -36,10 +57,29 @@ public class Partida {
         return rodadas;
     }
 
+    public int getLimiteRodadas() {
+        return limiteRodadas;
+    }
+
+    public int getNumeroParticipantes() {
+        return numeroParticipantes;
+    }
+
+    public void setNumeroParticipantes(int numeroParticipantes) {
+        if(status || rodadas > 0){
+            throw new IllegalStateException("Não é possível alternar uma partida iniciada");
+        }
+        if(numeroParticipantes < 1 || numeroParticipantes > 8){
+            throw new IllegalArgumentException("Quantidade de participantes inválida");
+        }
+
+        this.numeroParticipantes = numeroParticipantes;
+    }
+
     public void adicionarPontuacao(int pontos) {
 
         if(!status){
-            throw new IllegalStateException( "A partida já foi finalizada" );
+            throw new IllegalStateException( "A partida não está ativa" );
         }
 
         if (pontos < 0) {
@@ -51,7 +91,7 @@ public class Partida {
 
     public void avancarRodada(){
         if(!status){
-            throw new IllegalStateException( " A partida já foi finalizada" );
+            throw new IllegalStateException( " A partida não está ativa" );
         }
 
         rodadas ++;
@@ -63,6 +103,7 @@ public class Partida {
 
     public void finalizar() {
         this.status = false;
+        this.encerrada = true;
     }
 
     public boolean estaAtiva() {
