@@ -1,5 +1,8 @@
 package org.example.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Partida {
 
     private int id;
@@ -9,6 +12,7 @@ public class Partida {
     private int limiteRodadas;
     private int numeroParticipantes;
     private boolean encerrada;
+    private List<Jogador> jogadores;
 
 
     public Partida(int id, int numeroParticipantes, int limiteRodadas) {
@@ -31,6 +35,7 @@ public class Partida {
         this.rodadas = 0;
         this.status = false;
         this.encerrada = false;
+        this.jogadores = new ArrayList<>();
     }
 
     public void iniciar(){
@@ -110,4 +115,24 @@ public class Partida {
         return status;
     }
 
+    public void adicionarJogador(Jogador jogador){
+
+        if(status || encerrada){
+            throw new IllegalStateException("Não é possível adicionar jogadores a uma partida iniciada ou encerrada");
+        }
+
+        if(jogadores == null){
+            throw new IllegalArgumentException("Jogador inválido");
+        }
+
+        if(jogadores.size() >= numeroParticipantes){
+            throw new IllegalStateException("A quantidade máxima de participantes foi atingida");
+        }
+
+        jogadores.add(jogador);
+    }
+
+    public List<Jogador> getJogadores(){
+        return new ArrayList<>(jogadores);
+    }
 }
