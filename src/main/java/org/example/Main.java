@@ -33,4 +33,7 @@ public class Main {
         System.out.println("Pontos da rodada: " + pontos);
         System.out.println("Total da partida: " + partida.getPontuacaoTotal());
     }
+
+
+
 }
