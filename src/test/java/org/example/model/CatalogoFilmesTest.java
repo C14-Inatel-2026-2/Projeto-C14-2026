@@ -3,6 +3,8 @@ package org.example.model;
 import org.junit.Test;
 import java.util.List;
 import static org.junit.Assert.assertEquals;
+import org.example.mockito.FilmesConst;
+import java.io.StringReader;
 
 public class CatalogoFilmesTest {
 
@@ -14,5 +16,15 @@ public class CatalogoFilmesTest {
         List<Filmes> filmes = catalogo.carregarFilmes();
 
         assertEquals(15, filmes.size());
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void naoDeveCarregarFilmeComNotaInvalida() {
+
+        CatalogoFilmes catalogo = new CatalogoFilmes();
+        StringReader leitor = new StringReader(FilmesConst.NOTA_INVALIDA);
+
+        catalogo.converterJson(leitor);
+
     }
 }
