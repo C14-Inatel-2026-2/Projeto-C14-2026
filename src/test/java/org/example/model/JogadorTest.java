@@ -32,7 +32,6 @@ public class JogadorTest {
                 "João",
                 0
         );
-
         usuarioTest.setNome("Pedro");
 
         assertEquals("Pedro", usuarioTest.getNome());
