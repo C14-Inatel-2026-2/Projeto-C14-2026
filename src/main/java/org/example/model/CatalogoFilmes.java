@@ -37,6 +37,10 @@ import java.util.List;
                             "O catálogo de filmes está vazio."
                     );
                 }
+                for (Filmes filme : filmes) {
+                    filme.validarNota(filme.getNota());
+                    filme.validarDuracao(filme.getDuracao());
+                }
 
                 return filmes;
 
