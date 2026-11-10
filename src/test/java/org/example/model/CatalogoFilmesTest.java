@@ -27,4 +27,14 @@ public class CatalogoFilmesTest {
         catalogo.converterJson(leitor);
 
     }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void naoDeveCarregarFilmeComDuracaoInvalida() {
+
+        CatalogoFilmes catalogo = new CatalogoFilmes();
+        StringReader leitor = new StringReader(FilmesConst.DURACAO_INVALIDA);
+
+        catalogo.converterJson(leitor);
+
+    }
 }

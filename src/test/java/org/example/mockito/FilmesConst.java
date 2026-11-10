@@ -16,4 +16,18 @@ public class FilmesConst {
                 }
             ]
             """;
+    public static final String DURACAO_INVALIDA = """
+        [
+            {
+                "nome": "Filme Teste",
+                "anoLancamento": 2025,
+                "nota": 8.0,
+                "sinopse": "Sinopse teste",
+                "diretor": "Diretor Teste",
+                "duracao": 0,
+                "classificacao": "Livre",
+                "genero": "Aventura"
+            }
+        ]
+        """;
 }
