@@ -6,6 +6,7 @@ import com.google.gson.reflect.TypeToken;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.Reader;
+import java.io.StringReader;
 import java.lang.reflect.Type;
 import java.nio.charset.StandardCharsets;
 import java.util.List;
@@ -26,28 +27,34 @@ import java.util.List;
             try (Reader leitor = new InputStreamReader(
                     arquivo, StandardCharsets.UTF_8)) {
 
-                Gson gson = new Gson();
-
-                Type tipoLista = new TypeToken<List<Filmes>>() {}.getType();
-
-                List<Filmes> filmes = gson.fromJson(leitor, tipoLista);
-
-                if (filmes == null) {
-                    throw new IllegalStateException(
-                            "O catálogo de filmes está vazio."
-                    );
-                }
-                for (Filmes filme : filmes) {
-                    filme.validarNota(filme.getNota());
-                    filme.validarDuracao(filme.getDuracao());
-                }
-
-                return filmes;
+                return converterJson(leitor);
 
             } catch (java.io.IOException e) {
                 throw new IllegalStateException(
                         "Erro ao ler o catálogo de filmes.", e
                 );
             }
+        }
+
+        public List<Filmes> converterJson(Reader leitor) {
+
+            Gson gson = new Gson();
+
+            Type tipoLista = new TypeToken<List<Filmes>>() {}.getType();
+
+            List<Filmes> filmes = gson.fromJson(leitor, tipoLista);
+
+            if (filmes == null) {
+                throw new IllegalStateException(
+                        "O catálogo de filmes está vazio."
+                );
+            }
+
+            for (Filmes filme : filmes) {
+                filme.validarNota(filme.getNota());
+                filme.validarDuracao(filme.getDuracao());
+            }
+
+            return filmes;
         }
     }
