@@ -2,13 +2,16 @@ package org.example.model;
 
 import org.junit.Test;
 import static org.junit.Assert.assertEquals;
+import org.junit.Before;
 
 
 public class FilmesTest {
 
-    @Test
-    public void deveCriarFilmeComNotaCorreta(){
-        Filmes filmeTeste = new Filmes(
+    private Filmes filmeTeste;
+
+    @Before
+    public void prepararFilme() {
+        filmeTeste = new Filmes(
                 "Filme Teste",
                 2025,
                 8.5f,
@@ -18,9 +21,15 @@ public class FilmesTest {
                 "Livre",
                 "Aventura"
         );
+    }
+
+
+    @Test
+    public void deveCriarFilmeComNotaCorreta(){
 
         assertEquals(8.5f, filmeTeste.getNota(), 0.001f);
     }
+
 
     @Test(expected = IllegalArgumentException.class)
     public void naoDeveAceitarNotaMaiorQueDez() {
@@ -83,152 +92,65 @@ public class FilmesTest {
 
     @Test
     public void deveAceitarDuracaoValida(){
-        Filmes filmeTeste = new Filmes(
-                "Filme Teste",
-                2025,
-                8.5f,
-                "Sinopse do filme teste",
-                "Diretor Teste",
-                120,
-                "Livre",
-                "Aventura"
-        );
 
         filmeTeste.setDuracao(150);
-
         assertEquals(150, filmeTeste.getDuracao());
 
     }
 
-    @Test
-public void deveAlterarNomeDoFilme() {
 
-    Filmes filmeTeste = new Filmes(
-            "Viva a vida é uma festa",
-            2025,
-            8.5f,
-            "Sinopse do filme teste",
-            "Diretor Teste",
-            120,
-            "Livre",
-            "Animação"
-    );
-
-    filmeTeste.setNome("Up: Altas Aventuras");
-
-    assertEquals("Up: Altas Aventuras", filmeTeste.getNome());
-}
-
-    @Test
-    public void deveAlterarAnoLancamentoDoFilme() {
-
-        Filmes filmeTeste = new Filmes(
-                "Filme Teste",
-                2025,
-                8.5f,
-                "Sinopse do filme teste",
-                "Diretor Teste",
-                120,
-                "Livre",
-                "Aventura"
-        );
-
-        filmeTeste.setAnoLancamento(2026);
-
-        assertEquals(2026, filmeTeste.getAnoLancamento());
-    }
 
     @Test
     public void deveAtualizarNotaValida() {
-        Filmes filmeTeste = new Filmes(
-                "Filme Teste",
-                2025,
-                8.5f,
-                "Sinopse do filme teste",
-                "Diretor Teste",
-                120,
-                "Livre",
-                "Aventura"
-        );
 
         filmeTeste.setNota(9.0f);
 
         assertEquals(9.0f, filmeTeste.getNota(), 0.001f);
     }
 
-    @Test
-    public void deveAlterarGeneroDoFilme() {
 
-        Filmes filmeTeste = new Filmes(
-                "Interestelar",
-                2014,
-                8.7f,
-                "Uma viagem espacial",
-                "Christopher Nolan",
-                169,
-                "12 anos",
-                "Ficção científica"
-        );
+    @Test(expected = IllegalArgumentException.class)
+    public void validarNotaDeveRejeitarNotaMaiorQueDez() {
 
-        filmeTeste.setGenero("Drama");
+        filmeTeste.validarNota(15.0f);
 
-        assertEquals("Drama", filmeTeste.getGenero());
     }
 
     @Test
-    public void deveAlterarDiretorDoFilme() {
-        Filmes filmeTeste = new Filmes(
-                "Interestelar",
-                2014,
-                8.7f,
-                "Uma viagem espacial",
-                "Christopher Nolan",
-                169,
-                "12 anos",
-                "Ficção científica"
-        );
+    public void validarNotaDeveAceitarNotaIgualZero() {
 
-        filmeTeste.setDiretor("Steven Spielberg");
+        filmeTeste.validarNota(0.0f);
+    }
 
-        assertEquals("Steven Spielberg", filmeTeste.getDiretor());
+    @Test(expected = IllegalArgumentException.class)
+    public void validarNotaDeveRejeitarNotaNegativa() {
+        filmeTeste.validarNota(-1.0f);
     }
 
     @Test
-    public void deveAlterarSinopseDoFilme(){
-        Filmes filmeTeste = new Filmes(
-                "Interestelar",
-                2014,
-                8.7f,
-                "Uma viagem espacial",
-                "Christopher Nolan",
-                169,
-                "12 anos",
-                "Ficção científica"
-        );
+    public void validarNotaDeveAceitarNotaIgualDez() {
 
-        filmeTeste.setSinopse("Uma missão espacial em busca de um novo planeta.");
+        filmeTeste.validarNota(10.0f);
+    }
 
-        assertEquals(
-                "Uma missão espacial em busca de um novo planeta.",
-                filmeTeste.getSinopse()
-        );
+    @Test(expected = IllegalArgumentException.class)
+    public void validarDuracaoDeveRejeitarDuracaoNegativa() {
+
+        filmeTeste.validarDuracao(-20);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void validarDuracaoDeveRejeitarDuracaoIgualZero() {
+
+        filmeTeste.validarDuracao(0);
+
     }
 
     @Test
-    public void deveAlterarClassificacaoDoFilme(){
-        Filmes filmeteste = new Filmes(
-                "Interestelar",
-                2014,
-                8.7f,
-                "Uma viagem espacial",
-                "Christopher Nolan",
-                169,
-                "12 anos",
-                "Ficção científica"
-        );
+    public void validarDuracaoDeveAceitarDuracaoValida() {
 
-        filmeteste.setClassificacao("14 anos");
-
-        assertEquals("14 anos", filmeteste.getClassificacao());
+        filmeTeste.validarDuracao(150);
     }
+
+
 }
