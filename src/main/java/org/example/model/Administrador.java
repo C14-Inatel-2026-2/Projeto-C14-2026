@@ -6,9 +6,8 @@ public class Administrador extends Usuario{
         super(nome, id);
     }
 
-    public Jogador AddJogador(String nome){
-        Jogador novoJogador = new Jogador(nome, VariaveisGlobais.proximoId);
-        VariaveisGlobais.proximoId++;
+    public Jogador AddJogador(String nome, int id){
+        Jogador novoJogador = new Jogador(nome,id);
 
         return novoJogador;
     }

@@ -9,6 +9,9 @@ public class PartidaTest {
     @Test(expected = IllegalArgumentException.class)
     public void naoDeveAceitarPontuacaoNegativa() {
         Partida partida = new Partida(1 , 1,2);
+
+        partida.iniciar();
+
         partida.adicionarPontuacao(-50);
     }
 
@@ -20,6 +23,9 @@ public class PartidaTest {
     @Test
     public void deveAdicionarPontuacaoCorretamente(){
         Partida partida = new Partida(1,2,3);
+
+        partida.iniciar();
+
         partida.adicionarPontuacao(50);
         assertEquals(50, partida.getPontuacaoTotal());
     }
@@ -34,7 +40,9 @@ public class PartidaTest {
 
     @Test
     public void deveFinalizarAposCincoRodadas(){
-        Partida partida = new Partida(1,3,4);
+        Partida partida = new Partida(1,3,5);
+
+        partida.iniciar();
 
         for(int i = 0; i<5; i++){
             partida.avancarRodada();
