@@ -1,14 +1,17 @@
 package org.example;
 
+import org.example.model.Menu;
 import org.example.model.Filmes;
 import org.example.model.Partida;
 import org.example.model.Rodada;
 import org.example.service.JogoService;
 
-public class Main {
-
-    public static void main(String[] args) {
+public class Main{
+    public static void main(String[] args){
         System.out.println("MovieGuesser funcionando!");
+        Menu menu = new Menu();
+
+        menu.GerarTela(1);
 
         Filmes filme = new Filmes(
                 "Interestelar",
@@ -21,7 +24,7 @@ public class Main {
                 "Ficção científica / Aventura"
         );
 
-        Partida partida = new Partida(1);
+        Partida partida = new Partida(1,2,5);
         Rodada rodada = new Rodada(1, filme);
         JogoService jogo = new JogoService();
 
@@ -33,7 +36,4 @@ public class Main {
         System.out.println("Pontos da rodada: " + pontos);
         System.out.println("Total da partida: " + partida.getPontuacaoTotal());
     }
-
-
-
 }
