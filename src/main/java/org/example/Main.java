@@ -1,11 +1,12 @@
 package org.example;
 
-import org.example.model.GerenciadorJogadores;
+import org.example.model.Menu;
 
 public class Main{
     public static void main(String[] args){
         System.out.println("MovieGuesser funcionando!");
-    }
+        Menu menu = new Menu();
 
-    GerenciadorJogadores gerenciador = new GerenciadorJogadores("Jorge");
+        menu.GerarTela(1);
+    }
 }
