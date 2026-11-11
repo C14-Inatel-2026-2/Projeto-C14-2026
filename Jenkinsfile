@@ -54,8 +54,6 @@ pipeline {
                     copy /Y "target\\MovieGuesser-1.0-SNAPSHOT.jar" "%JENKINS_HOME%\\deploy\\MovieGuesser\\MovieGuesser.jar"
                     if errorlevel 1 exit /b 1
 
-                    java -cp "%JENKINS_HOME%\\deploy\\MovieGuesser\\MovieGuesser.jar" org.example.Main
-                    if errorlevel 1 exit /b 1
                 '''
             }
         }
