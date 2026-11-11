@@ -16,6 +16,10 @@ public class GerenciadorJogadores {
         proximoId++;
     }
 
+    public void RemoverJogador(int id) {
+        jogadores.removeIf(jogador -> jogador.getId() == id);
+    }
+
 
     public ArrayList<Jogador> getJogadores() { return jogadores; }
 
