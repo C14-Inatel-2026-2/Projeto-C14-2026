@@ -3,6 +3,7 @@ pipeline {
     agent any
 
     tools {
+        jdk 'JDK21'
         maven 'Maven'
     }
 
@@ -40,6 +41,10 @@ pipeline {
             }
         }
         stage('Deploy') {
+            when {
+                    expression {
+                        return env.GIT_BRANCH == 'origin/main'
+                    }
             steps {
                 bat '''
                     if not exist "%JENKINS_HOME%\\deploy\\MovieGuesser" (
