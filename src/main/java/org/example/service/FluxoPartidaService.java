@@ -14,8 +14,9 @@ public class FluxoPartidaService {
     private final ExecucaoPartidaService execucao;
     private final TelaPartida tela;
     private final Scanner scanner;
+    private final PlacarService placar;
 
-    public FluxoPartidaService(Partida partida, Scanner scanner) {
+    public FluxoPartidaService(Partida partida, Scanner scanner, PlacarService placar) {
         if (partida == null || scanner == null) {
             throw new IllegalArgumentException(
                     "A partida e o scanner não podem ser nulos."
@@ -24,7 +25,8 @@ public class FluxoPartidaService {
 
         this.partida = partida;
         this.scanner = scanner;
-        this.execucao = new ExecucaoPartidaService(partida);
+        this.placar = placar;
+        this.execucao = new ExecucaoPartidaService(partida, placar);
         this.tela = new TelaPartida();
 
         CatalogoFilmes catalogo = new CatalogoFilmes();
@@ -72,6 +74,13 @@ public class FluxoPartidaService {
         }
 
         System.out.println("\nPartida finalizada!");
+
+        var resultado = placar.rankingPartida(partida.getId());
+        System.out.printf("%n=== Ranking da partida %d ===%n", resultado.numeroPartida());
+
+        for (var jogador : resultado.ranking()) {
+            System.out.printf("%s: %d pontos%n", jogador.nome(), jogador.pontos());
+        }
     }
 
     private double lerPalpite() {
