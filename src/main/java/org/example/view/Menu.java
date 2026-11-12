@@ -8,6 +8,7 @@ public class Menu {
     Scanner scanner = new Scanner(System.in);
     GerenciadorJogadores gerenciador;
     String nome;
+    int id;
 
     public void GerarTela(int caso) {
 
@@ -29,7 +30,8 @@ public class Menu {
                     System.out.println("\n=====MOVIE GUESSER=====");
                     System.out.println("1 - Jogar");
                     System.out.println("2 - Adicionar jogador");
-                    System.out.println("3 - Sair");
+                    System.out.println("3 - Remover jogador");
+                    System.out.println("4 - Sair");
                     System.out.print("Escolha uma opção: ");
 
                     if (!scanner.hasNextInt()) {
@@ -47,7 +49,7 @@ public class Menu {
                         case 1:
                             System.out.println("Indo para configurações");
                             //Futuramente chamar a tela de configurações (caso = 4)
-                            caso = 4;
+                            caso = 5;
                             break;
 
                         case 2:
@@ -56,6 +58,11 @@ public class Menu {
                             break;
 
                         case 3:
+                            //Vai para adicionar jogador
+                            caso = 4;
+                            break;
+
+                        case 4:
                             System.out.println("Encerrando MovieGuesser");
 
                             caso = 0;
@@ -89,6 +96,25 @@ public class Menu {
                     break;
 
                 case 4:
+                    System.out.println("");
+                    System.out.println("======== Removendo Jogador ========");
+                    System.out.println("Jogadores Cadastrados");
+
+                    for (Jogador jogador : gerenciador.getJogadores()) {
+                        System.out.println(
+                                "ID: " + jogador.getId() + " | Nome: " + jogador.getNome()
+                        );
+                    }
+                    System.out.println("");
+
+                    System.out.print("insira o id desejado: ");
+                    id = scanner.nextInt();
+                    gerenciador.RemoverJogador(id);
+                    System.out.println("Jogador de id " + id + " removido com sucesso!");
+                    caso = 2;
+                    break;
+
+                case 5:
                     System.out.println("\n===== CONFIGURAÇÕES DA PARTIDA =====");
 
                     System.out.println("1 - Configurar partida");
