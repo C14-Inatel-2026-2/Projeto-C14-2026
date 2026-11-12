@@ -45,6 +45,7 @@ pipeline {
                     expression {
                         return env.GIT_BRANCH == 'origin/main'
                     }
+             }
             steps {
                 bat '''
                     if not exist "%JENKINS_HOME%\\deploy\\MovieGuesser" (
