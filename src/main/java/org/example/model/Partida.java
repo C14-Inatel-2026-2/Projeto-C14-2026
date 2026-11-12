@@ -12,7 +12,7 @@ public class Partida {
     private int limiteRodadas;
     private int numeroParticipantes;
     private boolean encerrada;
-    private List<Jogador> jogadores;
+    private List<Usuario> jogadores;
 
 
     public Partida(int id, int numeroParticipantes, int limiteRodadas) {
@@ -115,13 +115,13 @@ public class Partida {
         return status;
     }
 
-    public void adicionarJogador(Jogador jogador){
+    public void adicionarJogador(Usuario participante){
 
         if(status || encerrada){
             throw new IllegalStateException("Não é possível adicionar jogadores a uma partida iniciada ou encerrada");
         }
 
-        if(jogadores == null){
+        if(participante == null){
             throw new IllegalArgumentException("Jogador inválido");
         }
 
@@ -129,10 +129,10 @@ public class Partida {
             throw new IllegalStateException("A quantidade máxima de participantes foi atingida");
         }
 
-        jogadores.add(jogador);
+        jogadores.add(participante);
     }
 
-    public List<Jogador> getJogadores(){
+    public List<Usuario> getJogadores(){
         return new ArrayList<>(jogadores);
     }
 }
