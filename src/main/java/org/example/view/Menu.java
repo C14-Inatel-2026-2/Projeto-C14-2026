@@ -2,6 +2,7 @@ package org.example.view;
 import org.example.model.GerenciadorJogadores;
 import org.example.model.Jogador;
 import org.example.model.ConfiguracaoJogo;
+import org.example.model.Partida;
 
 import java.util.Scanner;
 
@@ -120,6 +121,7 @@ public class Menu {
 
                     System.out.print("insira o id desejado: ");
                     id = scanner.nextInt();
+                    scanner.nextLine();
                     gerenciador.RemoverJogador(id);
                     System.out.println("Jogador de id " + id + " removido com sucesso!");
                     caso = 2;
@@ -178,7 +180,7 @@ public class Menu {
                     }
                     break;
 
-                case 5:
+                case 6:
                     System.out.println("\n===== FIM DA PARTIDA =====");
                     System.out.println("Jogar novamente?");
                     System.out.println("1 - Sim");
@@ -188,7 +190,7 @@ public class Menu {
                     if(!scanner.hasNextInt()){
                         System.out.println("Opção inválida!");
                         scanner.nextLine();
-                        caso = 5;
+                        caso = 6;
                         break;
                     }
 
@@ -198,7 +200,7 @@ public class Menu {
                     switch (resposta){
                         case 1:
                             System.out.println("Voltando às configurações");
-                            caso = 4;
+                            caso = 5;
                             break;
 
                         case 2:
@@ -208,7 +210,7 @@ public class Menu {
 
                         default:
                             System.out.println("Opção inválida!");
-                            caso = 5;
+                            caso = 6;
                             break;
                     }
                     break;
@@ -220,4 +222,9 @@ public class Menu {
             }
         }
     }
+
+    public boolean verificarFimPartida(Partida partida){
+        return !partida.estaAtiva();
+    }
+
 }

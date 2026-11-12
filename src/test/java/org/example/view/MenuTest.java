@@ -5,6 +5,7 @@ import org.junit.Test;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.util.Scanner;
+import org.example.model.Partida;
 import static org.junit.Assert.*;
 
 public class MenuTest {
@@ -77,4 +78,77 @@ public class MenuTest {
             System.setOut(saidaOriginal);
         }
     }
-}
+
+    @Test
+    public void deveIdentificarPartidaAtiva(){
+        Partida partida = new Partida(1,2,5);
+        partida.iniciar();
+
+        Menu menu = new Menu();
+
+        boolean resultado = menu.verificarFimPartida(partida);
+
+        assertFalse(resultado);
+    }
+
+    @Test
+    public void deveIdentificarPartidaFinalizada(){
+        Partida partida = new Partida(1,2,5);
+        partida.iniciar();
+        partida.finalizar();
+
+        Menu menu = new Menu();
+
+        boolean resultado = menu.verificarFimPartida(partida);
+
+        assertTrue(resultado);
+    }
+
+    @Test
+    public void deveEncerrarJogoAoEscolherNao() {
+        String entradas = "2\n";
+
+        ByteArrayOutputStream saida = new ByteArrayOutputStream();
+        PrintStream saidaOriginal = System.out;
+
+        try {
+            System.setOut(new PrintStream(saida));
+
+            Menu menu = new Menu(new Scanner(entradas));
+            menu.GerarTela(6);
+
+            String resultado = saida.toString();
+
+            assertTrue(resultado.contains("Jogar novamente?"));
+            assertTrue(resultado.contains("Encerrando MovieGuesser"));
+        } finally {
+            System.setOut(saidaOriginal);
+        }
+    }
+
+
+        @Test
+        public void deveVoltarConfiguracoesAoEscolherSim() {
+            String entradas = "1\n2\n4\n";
+
+            ByteArrayOutputStream saida = new ByteArrayOutputStream();
+            PrintStream saidaOriginal = System.out;
+
+            try {
+                System.setOut(new PrintStream(saida));
+
+                Menu menu = new Menu(new Scanner(entradas));
+                menu.GerarTela(6);
+
+                String resultado = saida.toString();
+
+                assertTrue(resultado.contains("Voltando às configurações"));
+                assertTrue(resultado.contains("CONFIGURAÇÕES DA PARTIDA"));
+                assertTrue(resultado.contains("Encerrando MovieGuesser"));
+
+            } finally {
+                System.setOut(saidaOriginal);
+            }
+        }
+
+    }
