@@ -131,7 +131,8 @@ public class Menu {
                     System.out.println("\n===== CONFIGURAÇÕES DA PARTIDA =====");
 
                     System.out.println("1 - Configurar partida");
-                    System.out.println("2 - Voltar ao menu principal");
+                    System.out.println("2 - Iniciar partida");
+                    System.out.println("3 - Voltar ao menu principal");
                     System.out.println("Escolha uma opção: ");
 
                     if (!scanner.hasNextInt()) {
@@ -170,6 +171,13 @@ public class Menu {
                             break;
 
                         case 2:
+                            System.out.println("Preparando início da partida");
+
+                            //Conectar com a execução da US-04
+                            caso = 5;
+                            break;
+
+                        case 3:
                             caso = 2;
                             break;
 
@@ -223,8 +231,24 @@ public class Menu {
         }
     }
 
-    public boolean verificarFimPartida(Partida partida){
-        return !partida.estaAtiva();
+    public boolean verificarFimPartida(Partida partida) {
+        return !partida.estaAtiva()
+                && partida.getRodadas() >= partida.getLimiteRodadas();
     }
 
+    public int proximaTelaAposPartida(Partida partida) {
+        if (verificarFimPartida(partida)) {
+            return 6;
+        }
+
+        return -1;
+    }
+
+    public void exibirFimPartida(Partida partida){
+        int proximaTela = proximaTelaAposPartida(partida);
+
+        if(proximaTela == 6){
+            GerarTela(6);
+        }
+    }
 }
