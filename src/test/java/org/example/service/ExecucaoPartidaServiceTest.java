@@ -4,7 +4,9 @@ package org.example.service;
 import org.example.model.Filmes;
 import org.example.model.Jogador;
 import org.example.model.Partida;
+import org.example.model.Usuario;
 import org.example.model.Rodada;
+import java.util.Collections;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -146,5 +148,122 @@ public class ExecucaoPartidaServiceTest {
 
         execucao.registrarPalpite(outraRodada, 9.0);
     }
+
+
+    @Test
+    public void devePermitirNovaRodadaAposTodosResponderem() {
+        execucao.registrarPalpite(rodada, 8.5);
+        execucao.registrarPalpite(rodada, 9.0);
+        execucao.registrarPalpite(rodada, 8.2);
+
+        Filmes outroFilme = new Filmes(
+                "Titanic",
+                1997,
+                7.9f,
+                "Romance a bordo de um navio",
+                "James Cameron",
+                194,
+                "12 anos",
+                "Romance"
+        );
+
+        Rodada segundaRodada = new Rodada(2, outroFilme);
+
+        execucao.registrarPalpite(segundaRodada, 7.5);
+
+        assertEquals("Pedro", execucao.getJogadorAtual().getNome());
+    }
+
+
+    @Test
+    public void deveFinalizarPartidaAoAtingirLimiteDeRodadas() {
+        execucao.registrarPalpite(rodada, 8.5);
+        execucao.registrarPalpite(rodada, 9.0);
+        execucao.registrarPalpite(rodada, 8.2);
+
+        Filmes outroFilme = new Filmes(
+                "Titanic",
+                1997,
+                7.9f,
+                "Romance a bordo de um navio",
+                "James Cameron",
+                194,
+                "12 anos",
+                "Romance"
+        );
+
+        Rodada segundaRodada = new Rodada(2, outroFilme);
+
+        execucao.registrarPalpite(segundaRodada, 7.5);
+        execucao.registrarPalpite(segundaRodada, 8.0);
+        execucao.registrarPalpite(segundaRodada, 7.8);
+
+        assertFalse(partida.estaAtiva());
+    }
+
+
+    @Test
+    public void deveAcumularPontuacaoDoJogadorEntreRodadas() {
+        Usuario ana = partida.getJogadores().get(0);
+
+        execucao.registrarPalpite(rodada, 8.5);
+        execucao.registrarPalpite(rodada, 9.0);
+        execucao.registrarPalpite(rodada, 8.2);
+
+        Filmes outroFilme = new Filmes(
+                "Titanic",
+                1997,
+                7.9f,
+                "Romance a bordo de um navio",
+                "James Cameron",
+                194,
+                "12 anos",
+                "Romance"
+        );
+
+        Rodada segundaRodada = new Rodada(2, outroFilme);
+
+        execucao.registrarPalpite(segundaRodada, 7.5);
+
+        assertEquals(194, execucao.getPontuacaoJogador(ana));
+    }
+
+
+    @Test
+    public void devePrepararRodadaComFilmeSorteado() {
+        Filmes filme = new Filmes(
+                "Interestelar",
+                2014,
+                8.7f,
+                "Viagem espacial",
+                "Christopher Nolan",
+                169,
+                "10 anos",
+                "Ficção científica"
+        );
+
+        SorteioService sorteio = new SorteioService(
+                Collections.singletonList(filme)
+        );
+
+        execucao.configurarSorteio(sorteio);
+
+        Rodada rodadaPreparada = execucao.prepararProximaRodada();
+
+        assertEquals(filme, rodadaPreparada.getFilmes());
+    }
+
+    @Test(expected = IllegalStateException.class)
+    public void naoDeveRegistrarPalpiteSemPrepararRodada() {
+        SorteioService sorteio = new SorteioService(
+                Collections.singletonList(rodada.getFilmes())
+        );
+
+        execucao.configurarSorteio(sorteio);
+
+        execucao.registrarPalpite(rodada, 8.5);
+    }
+
+
 
 }

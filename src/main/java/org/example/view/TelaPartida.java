@@ -2,12 +2,12 @@
 package org.example.view;
 
 import org.example.model.Filmes;
-import org.example.model.Jogador;
+import org.example.model.Usuario;
 
 public class TelaPartida {
 
     public void mostrarVezJogador(
-            Jogador jogador,
+            Usuario usuario,
             int numeroJogador,
             int rodadaAtual,
             int totalRodadas,
@@ -19,7 +19,7 @@ public class TelaPartida {
         );
 
         System.out.println(
-                "Jogador " + numeroJogador + " - " + jogador.getNome()
+                "Jogador " + numeroJogador + " - " + usuario.getNome()
         );
 
         System.out.println("Filme: " + filme.getNome());
