@@ -23,7 +23,7 @@ public class TelaPartida {
         );
 
         System.out.println("Filme: " + filme.getNome());
-        System.out.println("Ano: " + filme.getAno());
+        System.out.println("Ano: " + filme.getAnoLancamento());
         System.out.println("Gênero: " + filme.getGenero());
         System.out.println("Diretor: " + filme.getDiretor());
 
