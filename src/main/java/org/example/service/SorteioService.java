@@ -35,5 +35,28 @@ public class SorteioService {
     public int quantidadeDisponivel() {
         return filmesDisponiveis.size();
     }
+
+    public List<Filmes> sortearFilmesParaPartida(int quantidadeRodadas) {
+        if (quantidadeRodadas < 1) {
+            throw new IllegalArgumentException(
+                    "A quantidade de rodadas deve ser positiva."
+            );
+        }
+
+        if (quantidadeRodadas > filmesDisponiveis.size()) {
+            throw new IllegalArgumentException(
+                    "Não há filmes suficientes para todas as rodadas."
+            );
+        }
+
+        List<Filmes> filmesSorteados = new ArrayList<>();
+
+        for (int i = 0; i < quantidadeRodadas; i++) {
+            filmesSorteados.add(sortearFilme());
+        }
+
+        return filmesSorteados;
+    }
+
 }
 
