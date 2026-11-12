@@ -123,6 +123,41 @@ public class Menu {
                     }
                     break;
 
+                case 5:
+                    System.out.println("\n===== FIM DA PARTIDA =====");
+                    System.out.println("Jogar novamente?");
+                    System.out.println("1 - Sim");
+                    System.out.println("2 - Não");
+                    System.out.println("Escolha uma opção: ");
+
+                    if(!scanner.hasNextInt()){
+                        System.out.println("Opção inválida!");
+                        scanner.nextLine();
+                        caso = 5;
+                        break;
+                    }
+
+                    int resposta = scanner.nextInt();
+                    scanner.nextLine();
+
+                    switch (resposta){
+                        case 1:
+                            System.out.println("Voltando às configurações");
+                            caso = 4;
+                            break;
+
+                        case 2:
+                            System.out.println("Encerrando MovieGuesser");
+                            caso = 0;
+                            break;
+
+                        default:
+                            System.out.println("Opção inválida!");
+                            caso = 5;
+                            break;
+                    }
+                    break;
+
                 default:
                     System.out.println("Tela inválida!");
                     caso = 2;
