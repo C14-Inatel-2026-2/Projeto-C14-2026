@@ -1,14 +1,25 @@
 package org.example.view;
 import org.example.model.GerenciadorJogadores;
 import org.example.model.Jogador;
+import org.example.model.ConfiguracaoJogo;
 
 import java.util.Scanner;
 
 public class Menu {
-    Scanner scanner = new Scanner(System.in);
     GerenciadorJogadores gerenciador;
     String nome;
     int id;
+    ConfiguracaoJogo configuracao = new ConfiguracaoJogo();
+
+    private Scanner scanner;
+
+    public Menu(){
+        this.scanner = new Scanner(System.in);
+    }
+
+    public Menu(Scanner scanner){
+        this.scanner = scanner;
+    }
 
     public void GerarTela(int caso) {
 
@@ -124,7 +135,7 @@ public class Menu {
                     if (!scanner.hasNextInt()) {
                         System.out.println("Opção inválida!");
                         scanner.nextLine();
-                        caso = 4;
+                        caso = 5;
                         break;
                     }
 
@@ -133,9 +144,27 @@ public class Menu {
 
                     switch (escolha) {
                         case 1:
-                            System.out.println("Configuração da partida selecionada.");
-                            //Futuramente conectar com a configuração real
-                            caso = 4;
+                            System.out.println("Quantidade atual de partidas: " + configuracao.getQuantidadePartidas());
+
+                            System.out.print("Digite a quantidade desejada (1 a 10): ");
+
+                            if(!scanner.hasNextInt()){
+                                System.out.println("Digite um número válido!");
+                                scanner.nextLine();
+                                caso = 5;
+                                break;
+                            }
+
+                            int quantidade = scanner.nextInt();
+                            scanner.nextLine();
+
+                            try {
+                                configuracao.setQuantidadePartidas(quantidade);
+                                System.out.println("Configuração salva com sucesso!");
+                            }catch(IllegalArgumentException e){
+                                System.out.println(e.getMessage());
+                            }
+                            caso = 5;
                             break;
 
                         case 2:
@@ -144,7 +173,7 @@ public class Menu {
 
                         default:
                             System.out.println("Opção inválida!");
-                            caso = 4;
+                            caso = 5;
                             break;
                     }
                     break;
