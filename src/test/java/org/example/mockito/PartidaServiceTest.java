@@ -14,7 +14,9 @@ public class PartidaServiceTest {
     @Test
     public void deveBuscarPartidaPorId() {
 
-        Partida partida = new Partida(1);
+        Partida partida = new Partida(1, 1, 5);
+
+        partida.iniciar();
 
         PartidaRepository repository = mock(PartidaRepository.class);
 
@@ -30,7 +32,9 @@ public class PartidaServiceTest {
     @Test
     public void deveSalvarPartidaAposAdicionarPontuacao() {
 
-        Partida partida = new Partida(1);
+        Partida partida = new Partida(1, 2, 2);
+
+        partida.iniciar();
 
         PartidaRepository repository = mock(PartidaRepository.class);
 
@@ -48,7 +52,9 @@ public class PartidaServiceTest {
 
     @Test
     public void deveAcumularPontuacaoEmChamadasSucessivas(){
-        Partida partida = new Partida(1);
+        Partida partida = new Partida(1, 1, 1);
+
+        partida.iniciar();
 
         PartidaRepository repository = mock(PartidaRepository.class);
         when(repository.buscarPorId(1)).thenReturn(partida);
@@ -64,7 +70,10 @@ public class PartidaServiceTest {
 
     @Test
     public void deveManterPontuacaoAoAdicionarZero(){
-        Partida partida = new Partida(1);
+        Partida partida = new Partida(1,3,4);
+
+        partida.iniciar();
+
         partida.adicionarPontuacao(100);
 
         PartidaRepository repository = mock(PartidaRepository.class);
