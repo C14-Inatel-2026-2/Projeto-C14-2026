@@ -2,6 +2,9 @@ package org.example.service;
 
 import org.example.model.Partida;
 import org.example.model.Usuario;
+import org.example.model.Rodada;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 import java.util.List;
 
@@ -10,6 +13,8 @@ public class ExecucaoPartidaService {
     private final Partida partida;
     private final List<Usuario> jogadores;
     private int indiceJogadorAtual;
+    private final JogoService jogoService = new JogoService();
+    private final Map<Usuario, Double> palpitesRodada = new LinkedHashMap<>();
 
     public ExecucaoPartidaService(Partida partida) {
         if (partida == null) {
@@ -44,7 +49,7 @@ public class ExecucaoPartidaService {
         return indiceJogadorAtual + 1;
     }
 
-    public boolean avancarJogador() {
+    private boolean avancarJogador() {
         if (!partida.estaAtiva()) {
             throw new IllegalStateException(
                     "A partida não está ativa."
@@ -60,4 +65,33 @@ public class ExecucaoPartidaService {
         partida.avancarRodada();
         return false;
     }
+
+
+    public int registrarPalpite(Rodada rodada, double palpite) {
+        if (!partida.estaAtiva()) {
+            throw new IllegalStateException("A partida não está ativa.");
+        }
+
+        if (rodada == null) {
+            throw new IllegalArgumentException("A rodada não pode ser nula.");
+        }
+
+        if (Double.isNaN(palpite) || Double.isInfinite(palpite)
+                || palpite < 0 || palpite > 10) {
+            throw new IllegalArgumentException(
+                    "O palpite deve estar entre 0 e 10."
+            );
+        }
+
+        Usuario jogador = getJogadorAtual();
+
+        int pontos = jogoService.jogarRodada(partida, rodada, palpite);
+
+        palpitesRodada.put(jogador, palpite);
+
+        avancarJogador();
+
+        return pontos;
+    }
+
 }
