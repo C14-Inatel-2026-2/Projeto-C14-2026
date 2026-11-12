@@ -56,10 +56,41 @@ public class PartidaTest {
     public void naoDeveAcancarRodadaAposFinalizar(){
         Partida partida = new Partida(1,2,5);
 
+        partida.iniciar();
+
         for(int i = 0; i <5; i++){
             partida.avancarRodada();
         }
 
         partida.avancarRodada();
+    }
+
+    @Test
+    public void deveAdicionarAdministradorComoParticipante(){
+        Partida partida = new Partida(1, 2, 5);
+        Administrador admin = new Administrador("Ana", 0);
+
+        partida.adicionarJogador(admin);
+
+        assertEquals(1, partida.getJogadores().size());
+        assertEquals("Ana", partida.getJogadores().get(0).getNome());
+        assertEquals(0, partida.getJogadores().get(0).getId());
+    }
+
+    @Test
+    public void deveAdicionarJogadorComoParticipante(){
+        Partida partida = new Partida(1,2,5);
+        Jogador jogador = new Jogador("João", 1);
+
+        partida.adicionarJogador(jogador);
+
+        assertEquals(1, partida.getJogadores().size());
+        assertEquals("João", partida.getJogadores().get(0).getNome());
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void naoDeveAdicionarParticipanteNulo(){
+        Partida partida = new Partida(1, 2, 5);
+        partida.adicionarJogador(null);
     }
 }

@@ -1,5 +1,6 @@
 package org.example.model;
 import java.util.ArrayList;
+import java.util.List;
 
 public class GerenciadorJogadores {
 
@@ -24,4 +25,13 @@ public class GerenciadorJogadores {
     public ArrayList<Jogador> getJogadores() { return jogadores; }
 
     public Administrador getAdmin() { return admin; }
+
+    public List<Usuario> getParticipantes(){
+        List<Usuario> participantes = new ArrayList<>();
+
+        participantes.add(admin);
+        participantes.addAll(jogadores);
+
+        return participantes;
+    }
 }
