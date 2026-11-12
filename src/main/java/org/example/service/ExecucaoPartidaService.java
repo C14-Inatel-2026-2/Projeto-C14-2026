@@ -63,6 +63,7 @@ public class ExecucaoPartidaService {
 
         indiceJogadorAtual = 0;
         partida.avancarRodada();
+        palpitesRodada.clear();
         return false;
     }
 
@@ -94,4 +95,7 @@ public class ExecucaoPartidaService {
         return pontos;
     }
 
+    public int getQuantidadePalpitesRodada() {
+        return palpitesRodada.size();
+    }
 }

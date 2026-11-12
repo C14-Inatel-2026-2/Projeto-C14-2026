@@ -15,7 +15,6 @@ public class JogoService {
 
         int pontos = (int) Math.round(rodada.getPontuacao());
         partida.adicionarPontuacao(pontos);
-        partida.avancarRodada();
 
         return pontos;
     }
