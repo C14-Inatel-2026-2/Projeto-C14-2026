@@ -125,4 +125,26 @@ public class ExecucaoPartidaServiceTest {
 
         assertEquals(0, execucao.getQuantidadePalpitesRodada());
     }
+
+
+    @Test(expected = IllegalArgumentException.class)
+    public void naoDevePermitirTrocarRodadaAntesDeTodosResponderem() {
+        execucao.registrarPalpite(rodada, 8.5);
+
+        Filmes outroFilme = new Filmes(
+                "Titanic",
+                1997,
+                7.9f,
+                "Romance a bordo de um navio",
+                "James Cameron",
+                194,
+                "12 anos",
+                "Romance"
+        );
+
+        Rodada outraRodada = new Rodada(2, outroFilme);
+
+        execucao.registrarPalpite(outraRodada, 9.0);
+    }
+
 }

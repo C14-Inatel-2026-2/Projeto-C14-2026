@@ -15,6 +15,7 @@ public class ExecucaoPartidaService {
     private int indiceJogadorAtual;
     private final JogoService jogoService = new JogoService();
     private final Map<Usuario, Double> palpitesRodada = new LinkedHashMap<>();
+    private Rodada rodadaAtual;
 
     public ExecucaoPartidaService(Partida partida) {
         if (partida == null) {
@@ -64,6 +65,7 @@ public class ExecucaoPartidaService {
         indiceJogadorAtual = 0;
         partida.avancarRodada();
         palpitesRodada.clear();
+        rodadaAtual = null;
         return false;
     }
 
@@ -83,7 +85,13 @@ public class ExecucaoPartidaService {
                     "O palpite deve estar entre 0 e 10."
             );
         }
-
+        if (rodadaAtual == null) {
+            rodadaAtual = rodada;
+        } else if (rodadaAtual != rodada) {
+            throw new IllegalArgumentException(
+                    "Todos os jogadores devem responder à mesma rodada."
+            );
+        }
         Usuario jogador = getJogadorAtual();
 
         int pontos = jogoService.jogarRodada(partida, rodada, palpite);
