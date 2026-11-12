@@ -3,6 +3,7 @@ package org.example.service;
 import org.example.model.Filmes;
 import org.example.model.Jogador;
 import org.example.model.Partida;
+import org.example.model.Administrador;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -196,5 +197,28 @@ public class PlacarServiceTest {
 
         novaPartida.iniciar();
         return novaPartida;
+    }
+
+    @Test
+    public void deveIncluirAdministradorNoRanking() {
+        // Fixture
+        Administrador admin = new Administrador("Admin", 0);
+        Partida novaPartida = new Partida(2, 2, 1);
+        novaPartida.adicionarJogador(admin);
+        novaPartida.adicionarJogador(ana);
+        novaPartida.iniciar();
+        placar.iniciarPartida(novaPartida);
+
+        // Procedure
+        placar.registrarPalpite(novaPartida, admin.getId(), filme, 8.7);
+        placar.registrarPalpite(novaPartida, ana.getId(), filme, 8.0);
+        novaPartida.avancarRodada();
+        var ranking = placar.rankingPartida(novaPartida.getId()).ranking();
+
+        // Assert
+        assertEquals(List.of(
+                new PlacarService.ResultadoJogador(0, "Admin", 100),
+                new PlacarService.ResultadoJogador(2, "Ana", 93)
+        ), ranking);
     }
 }

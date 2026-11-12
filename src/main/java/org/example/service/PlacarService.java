@@ -1,9 +1,9 @@
 package org.example.service;
 
 import org.example.model.Filmes;
-import org.example.model.Jogador;
 import org.example.model.Partida;
 import org.example.model.Rodada;
+import org.example.model.Usuario;
 
 import java.math.BigDecimal;
 import java.util.Collection;
@@ -41,7 +41,7 @@ public class PlacarService {
             throw new IllegalStateException("A partida precisa estar ativa");
         }
 
-        List<Jogador> participantes = partida.getJogadores();
+        List<Usuario> participantes = partida.getJogadores();
 
         if (participantes.isEmpty()) {
             throw new IllegalArgumentException("A partida precisa ter jogadores");
@@ -49,7 +49,7 @@ public class PlacarService {
 
         Map<Integer, PontuacaoJogador> jogadores = new HashMap<>();
 
-        for (Jogador jogador : participantes) {
+        for (Usuario jogador : participantes) {
             var anterior = jogadores.putIfAbsent(
                     jogador.getId(),
                     new PontuacaoJogador(jogador.getNome(), new HashMap<>())
