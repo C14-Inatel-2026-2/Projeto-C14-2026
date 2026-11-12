@@ -1,4 +1,7 @@
-package org.example.model;
+package org.example.view;
+import org.example.model.GerenciadorJogadores;
+import org.example.model.Jogador;
+
 import java.util.Scanner;
 
 public class Menu {
@@ -44,7 +47,7 @@ public class Menu {
                         case 1:
                             System.out.println("Indo para configurações");
                             //Futuramente chamar a tela de configurações (caso = 4)
-                            caso = 2;
+                            caso = 4;
                             break;
 
                         case 2:
@@ -83,6 +86,41 @@ public class Menu {
                     gerenciador.AddJogador(nome);
                     System.out.println("Jogador " + nome + " criado com sucesso!");
                     caso = 2;
+                    break;
+
+                case 4:
+                    System.out.println("\n===== CONFIGURAÇÕES DA PARTIDA =====");
+
+                    System.out.println("1 - Configurar partida");
+                    System.out.println("2 - Voltar ao menu principal");
+                    System.out.println("Escolha uma opção: ");
+
+                    if (!scanner.hasNextInt()) {
+                        System.out.println("Opção inválida!");
+                        scanner.nextLine();
+                        caso = 4;
+                        break;
+                    }
+
+                    int escolha = scanner.nextInt();
+                    scanner.nextLine();
+
+                    switch (escolha) {
+                        case 1:
+                            System.out.println("Configuração da partida selecionada.");
+                            //Futuramente conectar com a configuração real
+                            caso = 4;
+                            break;
+
+                        case 2:
+                            caso = 2;
+                            break;
+
+                        default:
+                            System.out.println("Opção inválida!");
+                            caso = 4;
+                            break;
+                    }
                     break;
 
                 default:
