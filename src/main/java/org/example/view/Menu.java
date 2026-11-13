@@ -359,18 +359,49 @@ public class Menu {
                 System.out.println("\n===== PARTIDA " + i
                         + " DE " + totalPartidas + " =====");
 
-                boolean finalizada = iniciarPartida();
+                boolean concluida = iniciarPartida();
 
-                if (!finalizada) {
+                if (!concluida) {
                     System.out.println(
                             "Não foi possível concluir a sequência de partidas."
                     );
                     return false;
                 }
+
+                if(i < totalPartidas){
+                    gerenciador.rotacionarParticipantes();
+                    System.out.println("Ordem dos participantes atualizada!");
+                }
             }
 
             System.out.println("\nTodas as partidas foram concluídas!");
+            exibirRankingGeral();
             return true;
+        }
+
+        private void exibirRankingGeral(){
+            System.out.println("\n========== RANKING GERAL ==========");
+
+            var ranking = placar.rankingGeral();
+
+            for(int i = 0; i < ranking.size(); i++){
+                var jogador = ranking.get(i);
+
+                System.out.println(
+                        (i + 1) + "º lugar - " + jogador.nome()
+                                + " | Pontos: " + jogador.pontos()
+                );
+            }
+
+            System.out.println("\n========== VENCEDOR(ES) ==========");
+
+            List<PlacarService.ResultadoJogador> vencedores = placar.vencedores();
+
+            for(PlacarService.ResultadoJogador vencedor : vencedores){
+                System.out.println(
+                        vencedor.nome() + " - " + vencedor.pontos() + " pontos!"
+                );
+            }
         }
 
 }
