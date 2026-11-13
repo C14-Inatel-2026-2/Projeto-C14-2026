@@ -130,4 +130,24 @@ public class GerenciadorTest {
         assertEquals(2, gerenciador.getParticipantes().size());
     }
 
+    @Test
+    public void deveRotacionarParticipantesUmaPosicaoADireita(){
+        GerenciadorJogadores gerenciador = new GerenciadorJogadores("Jorge");
+
+        gerenciador.AddJogador("João");
+        gerenciador.AddJogador("Maria");
+
+        gerenciador.rotacionarParticipantes();
+
+        List <Usuario> participantes = gerenciador.getParticipantes();
+
+        assertEquals("Maria", participantes.get(0).getNome());
+        assertEquals("Jorge", participantes.get(1).getNome());
+        assertEquals("João", participantes.get(2).getNome());
+
+        assertEquals(2, participantes.get(0).getId());
+        assertEquals(0, participantes.get(1).getId());
+        assertEquals(1, participantes.get(2).getId());
+    }
+
 }

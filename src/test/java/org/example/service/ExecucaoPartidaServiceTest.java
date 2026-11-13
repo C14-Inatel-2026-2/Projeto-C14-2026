@@ -81,7 +81,7 @@ public class ExecucaoPartidaServiceTest {
         execucao.registrarPalpite(rodada, 9.0);
         execucao.registrarPalpite(rodada, 8.2);
 
-        assertEquals("Ana", execucao.getJogadorAtual().getNome());
+        assertEquals("Lucas", execucao.getJogadorAtual().getNome());
     }
 
     @Test(expected = IllegalArgumentException.class)
@@ -171,7 +171,7 @@ public class ExecucaoPartidaServiceTest {
 
         execucao.registrarPalpite(segundaRodada, 7.5);
 
-        assertEquals("Pedro", execucao.getJogadorAtual().getNome());
+        assertEquals("Ana", execucao.getJogadorAtual().getNome());
     }
 
 
@@ -235,6 +235,28 @@ public class ExecucaoPartidaServiceTest {
         execucao.configurarSorteio(sorteio);
 
         execucao.registrarPalpite(rodada, 8.5);
+    }
+
+    @Test
+    public void deveRotacionarJogadoresUmaPosicaoADireita(){
+        execucao.registrarPalpite(rodada, 8.5);
+        execucao.registrarPalpite(rodada, 9.0);
+        execucao.registrarPalpite(rodada, 8.2);
+
+        assertEquals(3, execucao.getJogadorAtual().getId());
+        assertEquals("Lucas", execucao.getJogadorAtual().getNome());
+
+    }
+
+    @Test
+    public void devePreservarIdsAposRotacao(){
+        execucao.registrarPalpite(rodada, 8.5);
+        execucao.registrarPalpite(rodada, 9.0);
+        execucao.registrarPalpite(rodada, 8.2);
+
+        assertEquals(3, execucao.getJogadorAtual().getId());
+        execucao.registrarPalpite(new Rodada(2, rodada.getFilmes()), 8.5);
+        assertEquals(1, execucao.getJogadorAtual().getId());
     }
 
 

@@ -6,6 +6,7 @@ import org.example.model.Rodada;
 import org.example.model.Filmes;
 import java.util.Map;
 import java.util.LinkedHashMap;
+import java.util.Collections;
 
 import java.util.List;
 
@@ -67,10 +68,15 @@ public class ExecucaoPartidaService {
             return true;
         }
 
-        indiceJogadorAtual = 0;
         partida.avancarRodada();
         palpitesRodada.clear();
         rodadaAtual = null;
+
+        if(partida.estaAtiva()){
+            Collections.rotate(jogadores, 1);
+        }
+
+        indiceJogadorAtual = 0;
         return false;
     }
 
