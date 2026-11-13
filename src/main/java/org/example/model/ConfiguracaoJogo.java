@@ -2,21 +2,21 @@ package org.example.model;
 
 public class ConfiguracaoJogo {
 
-    private int quantidadePartidas;
+    private int quantidadeRodadas;
 
     public ConfiguracaoJogo(){
-        this.quantidadePartidas = 5;
+        this.quantidadeRodadas = 5;
     }
 
-    public int getQuantidadePartidas(){
-        return quantidadePartidas;
+    public int getQuantidadeRodadas(){
+        return quantidadeRodadas;
     }
 
-    public void setQuantidadePartidas(int quantidadePartidas){
-        if(quantidadePartidas < 1 || quantidadePartidas > 10){
-            throw new IllegalArgumentException("A quantidade de partidas deve ser entre 1 e 10");
+    public void setQuantidadeRodadas(int quantidadeRodadas){
+        if(quantidadeRodadas < 1 || quantidadeRodadas > 10){
+            throw new IllegalArgumentException("A quantidade de rodadas deve ser entre 1 e 10");
         }
 
-        this.quantidadePartidas = quantidadePartidas;
+        this.quantidadeRodadas = quantidadeRodadas;
     }
 }

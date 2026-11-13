@@ -6,34 +6,34 @@ import static org.junit.Assert.*;
 public class ConfiguracaoJogoTest {
 
     @Test
-    public void deveIniciarComCincoPartidas(){
+    public void deveIniciarComCincoRodadas(){
         ConfiguracaoJogo config = new ConfiguracaoJogo();
-        assertEquals(5, config.getQuantidadePartidas());
+        assertEquals(5, config.getQuantidadeRodadas());
     }
 
     @Test
-    public void devePermitirUmaPartida(){
+    public void devePermitirUmaRodada(){
         ConfiguracaoJogo config = new ConfiguracaoJogo();
-        config.setQuantidadePartidas(1);
-        assertEquals(1, config.getQuantidadePartidas());
+        config.setQuantidadeRodadas(1);
+        assertEquals(1, config.getQuantidadeRodadas());
     }
 
     @Test
-    public void devePermitirDezPartidas(){
+    public void devePermitirDezRodadas(){
         ConfiguracaoJogo config = new ConfiguracaoJogo();
-        config.setQuantidadePartidas(10);
-        assertEquals(10, config.getQuantidadePartidas());
+        config.setQuantidadeRodadas(10);
+        assertEquals(10, config.getQuantidadeRodadas());
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void naoDevePermitirMaisDeDezPartidas(){
+    public void naoDevePermitirMaisDeDezRodadas(){
         ConfiguracaoJogo config = new ConfiguracaoJogo();
-        config.setQuantidadePartidas(11);
+        config.setQuantidadeRodadas(11);
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void naoDevePermitirZeroPartidas(){
+    public void naoDevePermitirZeroRodadas(){
         ConfiguracaoJogo config = new ConfiguracaoJogo();
-        config.setQuantidadePartidas(0);
+        config.setQuantidadeRodadas(0);
     }
 }
