@@ -291,11 +291,6 @@ public class Menu {
 
         List<Usuario> participantes = gerenciador.getParticipantes();
 
-        if (gerenciador.getJogadores().isEmpty()) {
-            System.out.println("Cadastre pelo menos um jogador antes de iniciar!");
-            return false;
-        }
-
         if (participantes.isEmpty() || participantes.size() > 8) {
             System.out.println("A partida precisa ter entre 1 e 8 participantes.");
             return false;
