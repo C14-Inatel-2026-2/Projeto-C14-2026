@@ -3,6 +3,10 @@ import org.example.model.GerenciadorJogadores;
 import org.example.model.Jogador;
 import org.example.model.ConfiguracaoJogo;
 import org.example.model.Partida;
+import org.example.service.FluxoPartidaService;
+import org.example.service.PlacarService;
+import org.example.model.Usuario;
+import java.util.List;
 
 import java.util.Scanner;
 
@@ -11,6 +15,8 @@ public class Menu {
     String nome;
     int id;
     ConfiguracaoJogo configuracao = new ConfiguracaoJogo();
+    private final PlacarService placar = new PlacarService();
+    private int proximoIdPartida = 1;
 
     private Scanner scanner;
 
@@ -30,7 +36,13 @@ public class Menu {
                 case 1:
                     System.out.println("========== Criando Admin ==========");
                     System.out.print("insira o nome desejado: ");
-                    nome = scanner.nextLine();
+                    nome = scanner.nextLine().trim();
+
+                    if (nome.isEmpty()) {
+                        System.out.println("O nome do administrador não pode estar vazio!");
+                        caso = 1;
+                        break;
+                    }
 
                     this.gerenciador = new GerenciadorJogadores(nome);
                     System.out.println("Administrador " + gerenciador.getAdmin().getNome() + " criado com sucesso!");
@@ -100,7 +112,13 @@ public class Menu {
                     System.out.println("");
 
                     System.out.print("insira o nome desejado: ");
-                    nome = scanner.nextLine();
+                    nome = scanner.nextLine().trim();
+
+                    if (nome.isEmpty()) {
+                        System.out.println("O nome do jogador não pode estar vazio!");
+                        caso = 3;
+                        break;
+                    }
 
                     gerenciador.AddJogador(nome);
                     System.out.println("Jogador " + nome + " criado com sucesso!");
@@ -120,10 +138,33 @@ public class Menu {
                     System.out.println("");
 
                     System.out.print("insira o id desejado: ");
+
+                    if (!scanner.hasNextInt()) {
+                        System.out.println("Digite um ID válido!");
+                        scanner.nextLine();
+                        caso = 4;
+                        break;
+                    }
+
                     id = scanner.nextInt();
                     scanner.nextLine();
-                    gerenciador.RemoverJogador(id);
-                    System.out.println("Jogador de id " + id + " removido com sucesso!");
+
+                    boolean encontrado = false;
+
+                    for (Jogador jogador : gerenciador.getJogadores()) {
+                        if (jogador.getId() == id) {
+                            encontrado = true;
+                            break;
+                        }
+                    }
+
+                    if (encontrado) {
+                        gerenciador.RemoverJogador(id);
+                        System.out.println("Jogador de ID " + id + " removido com sucesso!");
+                    } else {
+                        System.out.println("Jogador não encontrado!");
+                    }
+
                     caso = 2;
                     break;
 
@@ -173,8 +214,11 @@ public class Menu {
                         case 2:
                             System.out.println("Preparando início da partida");
 
-                            //Conectar com a execução da US-04
-                            caso = 5;
+                            if(executarPartidas()){
+                                caso = 6;
+                            }else{
+                                caso = 5;
+                            }
                             break;
 
                         case 3:
@@ -244,11 +288,89 @@ public class Menu {
         return -1;
     }
 
-    public void exibirFimPartida(Partida partida){
-        int proximaTela = proximaTelaAposPartida(partida);
+    private boolean iniciarPartida() {
 
-        if(proximaTela == 6){
-            GerarTela(6);
+        if (gerenciador == null) {
+            System.out.println("Cadastre um administrador primeiro!");
+            return false;
+        }
+
+        List<Usuario> participantes = gerenciador.getParticipantes();
+
+        if (gerenciador.getJogadores().isEmpty()) {
+            System.out.println("Cadastre pelo menos um jogador antes de iniciar!");
+            return false;
+        }
+
+        if (participantes.isEmpty() || participantes.size() > 8) {
+            System.out.println("A partida precisa ter entre 1 e 8 participantes.");
+            return false;
+        }
+
+        System.out.print("Quantidade de rodadas (1 a 10): ");
+
+        if (!scanner.hasNextInt()) {
+            System.out.println("Digite um número válido!");
+            scanner.nextLine();
+            return false;
+        }
+
+        int quantidadeRodadas = scanner.nextInt();
+        scanner.nextLine();
+
+        if (quantidadeRodadas < 1 || quantidadeRodadas > 10) {
+            System.out.println("A quantidade de rodadas deve ser entre 1 e 10.");
+            return false;
+        }
+
+        Partida partida = new Partida(
+                proximoIdPartida,
+                participantes.size(),
+                quantidadeRodadas
+        );
+
+        for (Usuario participante : participantes) {
+            partida.adicionarJogador(participante);
+        }
+
+        try {
+            FluxoPartidaService fluxo =
+                    new FluxoPartidaService(partida, scanner, placar);
+
+            partida.iniciar();
+            placar.iniciarPartida(partida);
+
+            proximoIdPartida++;
+
+            fluxo.executar();
+
+            return verificarFimPartida(partida);
+
+        } catch (IllegalArgumentException | IllegalStateException e) {
+            System.out.println("Erro ao iniciar ou executar a partida: " + e.getMessage());
+            return false;
         }
     }
+
+        private boolean executarPartidas() {
+            int totalPartidas = configuracao.getQuantidadePartidas();
+
+            for (int i = 1; i <= totalPartidas; i++) {
+                System.out.println("\n===== PARTIDA " + i
+                        + " DE " + totalPartidas + " =====");
+
+                boolean finalizada = iniciarPartida();
+
+                if (!finalizada) {
+                    System.out.println(
+                            "Não foi possível concluir a sequência de partidas."
+                    );
+                    return false;
+                }
+            }
+
+            System.out.println("\nTodas as partidas foram concluídas!");
+            return true;
+        }
+
 }

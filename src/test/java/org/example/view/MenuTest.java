@@ -12,7 +12,7 @@ public class MenuTest {
 
     @Test
     public void devePermitirConfigurarQuantidadeDePartidas(){
-        String entradas = "Admin\n1\n1\n3\n1\n2\n2\n4\n";
+        String entradas = "Admin\n1\n1\n3\n1\n3\n3\n4\n";
 
         ByteArrayOutputStream saida = new ByteArrayOutputStream();
         PrintStream saidaOriginal = System.out;
@@ -34,7 +34,7 @@ public class MenuTest {
 
     @Test
     public void naoDeveAlterarConfiguracaoComQuantidadeInvalida() {
-        String entradas = "Admin\n1\n1\n11\n1\n2\n2\n4\n";
+        String entradas = "Admin\n1\n1\n11\n1\n3\n3\n4\n";
 
         ByteArrayOutputStream saida = new ByteArrayOutputStream();
         PrintStream saidaOriginal = System.out;
@@ -59,7 +59,7 @@ public class MenuTest {
 
     @Test
     public void naoDeveAceitarEntradaNaoNumerica() {
-        String entradas = "Admin\n1\n1\nabc\n2\n4\n";
+        String entradas = "Admin\n1\n1\nabc\n3\n4\n";
 
         ByteArrayOutputStream saida = new ByteArrayOutputStream();
         PrintStream saidaOriginal = System.out;
@@ -95,7 +95,10 @@ public class MenuTest {
     public void deveIdentificarPartidaFinalizada(){
         Partida partida = new Partida(1,2,5);
         partida.iniciar();
-        partida.finalizar();
+
+        for (int i=0; i<5; i++){
+            partida.avancarRodada();
+        }
 
         Menu menu = new Menu();
 
@@ -129,7 +132,7 @@ public class MenuTest {
 
         @Test
         public void deveVoltarConfiguracoesAoEscolherSim() {
-            String entradas = "1\n2\n4\n";
+            String entradas = "1\n3\n4\n";
 
             ByteArrayOutputStream saida = new ByteArrayOutputStream();
             PrintStream saidaOriginal = System.out;
