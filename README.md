@@ -49,7 +49,7 @@ Os requisitos não funcionais descrevem características de qualidade e restriç
 
 O planejamento e o acompanhamento das atividades do projeto Movie Guesser são realizados utilizando a metodologia ágil Scrum, no Jira.
 
-## US-01 - Cadastro e Gerenciamento de Jogadores
+### US-01 - Cadastro e Gerenciamento de Jogadores
 
 **Responsável:** João Selim 
 
