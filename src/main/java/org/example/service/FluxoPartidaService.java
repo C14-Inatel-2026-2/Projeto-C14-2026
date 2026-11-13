@@ -5,6 +5,7 @@ import org.example.model.CatalogoFilmes;
 import org.example.model.Partida;
 import org.example.model.Rodada;
 import org.example.view.TelaPartida;
+import java.math.BigDecimal;
 
 import java.util.Scanner;
 
@@ -92,17 +93,32 @@ public class FluxoPartidaService {
                         entrada.replace(',', '.')
                 );
 
+                // Valida o intervalo e rejeita NaN e infinito.
                 if (!Double.isFinite(palpite)
                         || palpite < 0
                         || palpite > 10) {
-                    throw new NumberFormatException();
+
+                    System.out.print(
+                            "Palpite inválido! Digite uma nota de 0 a 10: "
+                    );
+                    continue;
+                }
+
+                // Aplica a mesma regra de casas decimais do placar.
+                if (BigDecimal.valueOf(palpite)
+                        .stripTrailingZeros().scale() > 1) {
+
+                    System.out.print(
+                            "Use no máximo uma casa decimal. Tente novamente: "
+                    );
+                    continue;
                 }
 
                 return palpite;
 
             } catch (NumberFormatException e) {
                 System.out.print(
-                        "Palpite inválido! Digite uma nota de 0 a 10: "
+                        "Entrada inválida! Digite uma nota de 0 a 10: "
                 );
             }
         }
