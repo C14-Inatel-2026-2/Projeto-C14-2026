@@ -71,8 +71,6 @@ public class Menu {
 
                     switch (opcao) {
                         case 1:
-                            System.out.println("Indo para configurações");
-                            //Futuramente chamar a tela de configurações (caso = 4)
                             caso = 5;
                             break;
 
