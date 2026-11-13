@@ -19,20 +19,21 @@ public class ExecucaoPartidaService {
     private final Map<Usuario, Integer> pontuacoesJogadores = new LinkedHashMap<>();
     private Rodada rodadaAtual;
     private SorteioService sorteioService;
+    private final PlacarService placar;
 
     public ExecucaoPartidaService(Partida partida) {
+        this(partida, null);
+    }
+
+    public ExecucaoPartidaService(Partida partida, PlacarService placar) {
         if (partida == null) {
-            throw new IllegalArgumentException(
-                    "A partida não pode ser nula."
-            );
+            throw new IllegalArgumentException("A partida não pode ser nula.");
         }
 
         this.jogadores = partida.getJogadores();
 
         if (jogadores.isEmpty()) {
-            throw new IllegalArgumentException(
-                    "A partida precisa ter jogadores."
-            );
+            throw new IllegalArgumentException("A partida precisa ter jogadores.");
         }
 
         if (jogadores.size() != partida.getNumeroParticipantes()) {
@@ -43,6 +44,7 @@ public class ExecucaoPartidaService {
 
         this.partida = partida;
         this.indiceJogadorAtual = 0;
+        this.placar = placar;
     }
 
     public Usuario getJogadorAtual() {
@@ -105,11 +107,16 @@ public class ExecucaoPartidaService {
 
         Usuario jogador = getJogadorAtual();
 
-        int pontos = jogoService.jogarRodada(partida, rodada, palpite);
+        int pontos;
 
-        palpitesRodada.put(jogador, palpite);
-        pontuacoesJogadores.merge(jogador, pontos, Integer::sum);
-
+        if (placar == null) {
+            pontos = jogoService.jogarRodada(partida, rodada, palpite);
+        } else {
+            pontos = placar.registrarPalpite(
+                    partida, jogador.getId(), rodada.getFilmes(), palpite
+            );
+            partida.adicionarPontuacao(pontos);
+        }
         avancarJogador();
 
         return pontos;
