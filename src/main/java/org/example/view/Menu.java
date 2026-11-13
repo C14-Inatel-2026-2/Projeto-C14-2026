@@ -188,7 +188,7 @@ public class Menu {
 
                     switch (escolha) {
                         case 1:
-                            System.out.println("Quantidade atual de partidas: " + configuracao.getQuantidadePartidas());
+                            System.out.println("Quantidade atual de rodadas: " + configuracao.getQuantidadeRodadas());
 
                             System.out.print("Digite a quantidade desejada (1 a 10): ");
 
@@ -203,7 +203,7 @@ public class Menu {
                             scanner.nextLine();
 
                             try {
-                                configuracao.setQuantidadePartidas(quantidade);
+                                configuracao.setQuantidadeRodadas(quantidade);
                                 System.out.println("Configuração salva com sucesso!");
                             }catch(IllegalArgumentException e){
                                 System.out.println(e.getMessage());
@@ -307,21 +307,7 @@ public class Menu {
             return false;
         }
 
-        System.out.print("Quantidade de rodadas (1 a 10): ");
-
-        if (!scanner.hasNextInt()) {
-            System.out.println("Digite um número válido!");
-            scanner.nextLine();
-            return false;
-        }
-
-        int quantidadeRodadas = scanner.nextInt();
-        scanner.nextLine();
-
-        if (quantidadeRodadas < 1 || quantidadeRodadas > 10) {
-            System.out.println("A quantidade de rodadas deve ser entre 1 e 10.");
-            return false;
-        }
+        int quantidadeRodadas = configuracao.getQuantidadeRodadas();
 
         Partida partida = new Partida(
                 proximoIdPartida,
@@ -329,21 +315,18 @@ public class Menu {
                 quantidadeRodadas
         );
 
-        for (Usuario participante : participantes) {
+        for(Usuario participante : participantes) {
             partida.adicionarJogador(participante);
         }
 
         try {
-            FluxoPartidaService fluxo =
-                    new FluxoPartidaService(partida, scanner, placar);
+            FluxoPartidaService fluxo = new FluxoPartidaService(partida, scanner, placar);
 
             partida.iniciar();
             placar.iniciarPartida(partida);
 
             proximoIdPartida++;
-
             fluxo.executar();
-
             return verificarFimPartida(partida);
 
         } catch (IllegalArgumentException | IllegalStateException e) {
@@ -353,28 +336,16 @@ public class Menu {
     }
 
         private boolean executarPartidas() {
-            int totalPartidas = configuracao.getQuantidadePartidas();
+            System.out.println("\n===== INICIANDO JOGO =====");
 
-            for (int i = 1; i <= totalPartidas; i++) {
-                System.out.println("\n===== PARTIDA " + i
-                        + " DE " + totalPartidas + " =====");
+            boolean concluida = iniciarPartida();
 
-                boolean concluida = iniciarPartida();
-
-                if (!concluida) {
-                    System.out.println(
-                            "Não foi possível concluir a sequência de partidas."
-                    );
-                    return false;
-                }
-
-                if(i < totalPartidas){
-                    gerenciador.rotacionarParticipantes();
-                    System.out.println("Ordem dos participantes atualizada!");
-                }
+            if(!concluida){
+                System.out.println("Não foi possível concluir o jogo");
+                return false;
             }
 
-            System.out.println("\nTodas as partidas foram concluídas!");
+            System.out.println("\nJogo concluído com sucesso!");
             exibirRankingGeral();
             return true;
         }
