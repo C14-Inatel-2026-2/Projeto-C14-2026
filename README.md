@@ -49,54 +49,65 @@ Os requisitos não funcionais descrevem características de qualidade e restriç
 
 O planejamento e o acompanhamento das atividades do projeto Movie Guesser são realizados utilizando a metodologia ágil Scrum, no Jira.
 
-## US-01 - Identificar Jogador
+### US-01 - Cadastro e Gerenciamento de Jogadores
 
-**Responsável:** Vinícius Godoy
+**Responsável:** João Selim 
 
-**Título:** Identificar Jogador
-
-**História de usuário:** Como jogador, quero informar meu nome antes de iniciar uma partida, para que o sistema possa me identificar e associar minha participação aos resultados do jogo.
+**História de usuário:** Como jogador, quero me cadastrar e adicionar outros participantes, para que todos possam participar do jogo e um administrador possa gerenciar as configurações.
 
 **Descrição das funcionalidades:** 
 
-Permitir com que cada jogador possa se identificar dentro do cenário do jogo, para que outros jogadores consigam dizer quem é o jogador referente a tal pontuação atrelada à ele, facilitando a interatividade dentre os jogadores. 
+Permitir que o jogador se cadastre e, sendo o primeiro cadastrado, seja identificado como administrador. O administrador poderá adicionar outros jogadores pelo botão “+”, e cada jogador terá um ID único. Os jogadores cadastrados ficarão disponíveis durante as partidas.
 
 **Critérios de aceite:**
-1. O sistema deve permitir que o jogador informe seu nome.
-2. O sistema deve validar se o campo de nome foi preenchido.
-3. O sistema não deve permitir continuar caso o nome esteja vazio.
-4. O sistema deve associar o nome informado à partida e à pontuação do jogador.
-5. O nome deve aparecer nos resultados da partida.
+1. O sistema deve permitir o cadastro inicial de um jogador.
+2. O primeiro jogador cadastrado deve ser identificado como administrador.
+3. O administrador deve conseguir adicionar outros jogadores pelo botão "+".
+4. Cada jogador deve possuir um identificador único.
+5. Os jogadores cadastrados devem estar disponíveis durante as partidas.
 
+Subtarefas técnicas:
+1. Implementar o cadastro inicial.
+2. Implementar a identificação do administrador.
+3. Implementar a adição de novos jogadores.
+4. Implementar a geração dos IDs.
+5. Criar testes unitários.
+6. Realizar commits incrementais.
+7. Executar e validar o pipeline do Jenkins.
 
-### US-02 — Configurar partida
+### US-02 — Configuração da partida e rodízio de jogadores
 
-**Responsável:** Mayara
-
-**Título:** Configurar partida.
+**Responsável:** Ana Clara
 
 **História de usuário:**
 
-Como jogador, quero configurar uma partida escolhendo a quantidade de rodadas e o número de participantes, para personalizar o jogo de acordo com minhas preferências.
+Como administrador, quero configurar a quantidade de rodadas e iniciar o jogo, para controlar sua duração e garantir que os jogadores participem em uma ordem organizada.
 
 **Descrição da funcionalidade:**
 
-Permitir que o jogador configure os parâmetros da partida antes de seu início, definindo a quantidade de rodadas e o número de participantes. O sistema deverá validar as opções selecionadas e garantir que a partida seja iniciada de acordo com as configurações estabelecidas.
+Permitir que o administrador defina a quantidade de rodadas e inicie o jogo por meio de um switch. A cada nova rodada, a ordem dos jogadores será rotacionada uma posição para a direita, com base nos IDs, e o jogo será finalizado ao atingir o número de rodadas configurado.
 
 **Critérios de aceite:**
+1. O administrador deve conseguir definir a quantidade de rodadas.
+2. O sistema deve permitir iniciar o jogo por meio de um switch.
+3. A quantidade de rodadas configurada deve ser respeitada.
+4. A ordem dos jogadores deve ser alterada a cada nova rodada.
+5. O rodízio deve deslocar a ordem dos jogadores uma posição para a direita, utilizando seus IDs.
+6. Ao atingir a quantidade de rodadas configurada, o jogo deve ser finalizado.
 
-1. Permitir que o jogador escolha a quantidade de rodadas da partida.
-2. Permitir que o jogador defina o número de participantes.
-3. Validar se as quantidades informadas estão dentro dos limites permitidos pelo sistema.
-4. Impedir o início da partida caso a configuração seja inválida.
-5. Garantir que a partida respeite a quantidade de rodadas e participantes selecionada.
-
+Subtarefas técnicas:
+1. Implementar a tela de configurações.
+2. Implementar a seleção da quantidade de rodadas.
+3. Implementar o switch de início.
+4. Implementar o controle de rodadas.
+5. Implementar o algoritmo de rodízio.
+6. Criar testes unitários.
+7. Realizar commits incrementais.
+8. Executar e validar o pipeline do Jenkins.
 
 ### US-03 - Selecionar filmes aleatoriamente sem repetição
 
-**Responsável:** Vinícius Godoy
-
-**Título:** Selecionar filmes aleatoriamente sem repetição
+**Responsável:** Giovanna Cabral
 
 **História de usuário:** 
 
@@ -111,55 +122,71 @@ Permitir que os jogadores possam jogar diferentes rodadas da partida sem com que
 2. Cada rodada deverá apresentar apenas um filme.
 3. Um filme já apresentado não poderá aparecer novamente durante a mesma partida.
 4. Ao finalizar as rodadas, o jogador deverá ter recebido um número de filmes diferentes referente ao número de rodadas jogadas.
+5. Criar testes unitários
+6. Realizar commits incrementais
+7. Executar e validar o pipeline do Jenkins
 
-
-### US-04 — Enviar palpite
+### US-04 — Execução da partida e envio de palpites
 
 **Responsável:** Giovanna Cabral
 
-**Título:** Enviar palpite.
+**História de usuário:** 
 
-**História de usuário:**
-
-Como jogador, quero informar um palpite entre 0 e 10 para a nota de um filme, para participar da rodada e tentar acertar sua avaliação correta.
+Como jogador, quero visualizar as perguntas sobre os filmes e registrar meus palpites, para participar das rodadas e receber uma pontuação de acordo com minhas respostas.
 
 **Descrição da funcionalidade:**
 
-Permitir que o jogador informe um palpite para a nota do filme apresentado em cada rodada. O sistema deverá validar o valor informado antes de registrá-lo, garantindo que o palpite esteja dentro do intervalo permitido e seja associado ao jogador e à rodada correspondente.
+Permitir que o jogador visualize o filme da sua vez e registre palpites sobre nota, ano, gênero e diretor. O sistema apresentará a ordem dos jogadores, registrará os palpites enviados e passará para o próximo jogador, encerrando a rodada quando todos tiverem participado.
 
 **Critérios de aceite:**
+1. O sistema deve apresentar a ordem dos jogadores.
+2. O sistema deve apresentar o filme correspondente à vez do jogador.
+3. O jogador deve conseguir responder às perguntas sobre nota, ano, gênero e diretor.
+4. O sistema deve registrar os palpites enviados.
+5. Após a participação de um jogador, o sistema deve passar para o próximo.
+6. Quando todos tiverem participado, a rodada deve ser encerrada.
 
-1. O sistema deve permitir que o jogador informe um valor entre 0 e 10.
-2. O sistema deve aceitar valores decimais, caso estejam previstos nas regras do jogo.
-3. O sistema não deve aceitar valores menores que 0 ou maiores que 10.
-4. O sistema deve validar o palpite antes de registrá-lo.
-5. O palpite deve ser associado ao jogador e à rodada correspondente.
+Subtarefas técnicas:
+1. Implementar a tela de execução da partida.
+2. Exibir o jogador atual.
+3. Implementar a exibição das perguntas.
+4. Implementar o registro dos palpites.
+5. Implementar a passagem para o próximo jogador.
+6. Encaminhar os palpites para o cálculo de pontuação.
+7. Criar testes unitários.
+8. Realizar commits incrementais.
+9. Executar e validar o pipeline do Jenkins.
 
+### US-05 — Visualizar resultados e ranking dos jogadores
 
-### US-05 — Calcular pontuação
-
-**Responsável:** João Selim
-
-**Título:** Calcular pontuação.
+**Responsável:** Vinícius Godoy
 
 **História de usuário:**
 
-Como jogador, quero que o sistema calcule minha pontuação com base na diferença entre meu palpite e a nota real do filme no IMDb, para que eu possa acompanhar meu desempenho durante a partida.
+Como jogador, quero visualizar o ranking ao final de cada partida e o resultado geral do jogo, para acompanhar minha pontuação e descobrir quem foi o vencedor.
 
 **Descrição da funcionalidade:**
 
-Calcular a pontuação obtida pelo jogador em cada rodada, considerando a diferença entre a nota oficial do filme no IMDb e o palpite informado. Quanto menor a diferença entre as notas, maior será a pontuação recebida.
+Permitir que o jogador visualize o ranking ao final de cada partida, com o número da partida, os nomes e os pontos dos jogadores. Ao final de todas as partidas, o sistema apresentará o ranking geral com as pontuações acumuladas e identificará o vencedor, mantendo os resultados temporariamente durante o jogo.
 
 A pontuação máxima por rodada será de 100 pontos, e o cálculo deverá garantir que o jogador nunca receba uma pontuação negativa.
 
 **Critérios de aceite:**
+1. Ao final de cada partida, o sistema deve apresentar um ranking.
+2. O ranking deve exibir o número da partida, os nomes e os pontos dos jogadores.
+3. Ao final de todas as partidas, o sistema deve apresentar o ranking geral.
+4. O ranking geral deve considerar as pontuações acumuladas.
+5. O sistema deve identificar o vencedor.
+6. Os resultados devem ser mantidos temporariamente durante o jogo.
 
-1. O sistema deve calcular a pontuação após o envio de um palpite válido.
-2. O sistema deve comparar o palpite informado pelo jogador com a nota oficial do filme no IMDb.
-3. O sistema deve atribuir 100 pontos caso o jogador acerte exatamente a nota do filme.
-4. O sistema deve descontar pontos proporcionalmente à diferença entre o palpite e a nota real.
-5. A pontuação obtida nunca poderá ser inferior a 0 pontos.
-6. O sistema deve apresentar a pontuação obtida pelo jogador na rodada.
+Subtarefas técnicas:
+1. Implementar o ranking de cada partida.
+2. Implementar o acúmulo de pontuação.
+3. Implementar o ranking geral.
+4. Implementar a identificação do vencedor.
+5. Criar testes unitários.
+6. Realizar commits incrementais.
+7. Executar e validar o pipeline do Jenkins.
 
 **Regra de cálculo da pontuação:**
 
@@ -178,26 +205,55 @@ A cada 0,1 ponto de diferença entre o palpite e a nota real, será descontado 1
 
 Os palpites deverão possuir apenas uma casa decimal.
 
+### US-06 — Calcular pontuação dos jogadores
 
-### US-06 — Gerenciar resultados e gerar pódio da partida
-
-**Responsável:** Ana
-
-**Título:** Gerenciar resultados e gerar pódio da partida.
+**Responsável:** Vinícius Godoy
 
 **História de usuário:**
-Como jogador, quero que as pontuações de todos os participantes sejam acumuladas durante a partida e que, ao final, seja apresentado um pódio com a classificação dos jogadores, para comparar seus desempenhos.
+
+Como jogador, quero que meus palpites sejam avaliados de acordo com uma fórmula de pontuação, para receber pontos conforme o desempenho das minhas respostas.
 
 **Descrição da funcionalidade:**
-Gerenciamento temporário dos resultados dos participantes durante uma partida, permitindo acumular as pontuações individuais e apresentar a classificação final após a conclusão de todas as rodadas.
+Permitir que os palpites do jogador sejam avaliados por uma fórmula de pontuação definida pela equipe, considerando os critérios de cada pergunta. Os pontos serão associados ao jogador correspondente e disponibilizados para a geração dos rankings.
+
 Os resultados serão mantidos apenas durante a execução da partida, sem armazenamento permanente ou utilização de banco de dados.
 
 **Critérios de aceite:**
+1. O sistema deve calcular a pontuação utilizando a fórmula definida pela equipe.
+2. A pontuação deve considerar os critérios de avaliação de cada pergunta.
+3. Os pontos devem ser associados ao jogador correspondente.
+4. Os resultados devem ser disponibilizados para a geração dos rankings.
 
-1. Armazenar temporariamente os palpites e as pontuações de cada participante durante a partida.
-2. Acumular individualmente os pontos obtidos em cada rodada.
-3. Calcular a pontuação total de todos os participantes ao final da partida.
-4. Ordenar os participantes conforme suas pontuações, da maior para a menor.
-5. Apresentar o pódio final com a classificação dos jogadores.
-6. Descartar os dados temporários após o encerramento da partida, sem manter histórico permanente.
+Subtarefas técnicas:
+1. Implementar a fórmula de pontuação definida 
+2. Calcular a pontuação dos palpites.
+3. Associar os pontos aos respectivos jogadores.
+4. Criar testes unitários para os cálculos.
+5. Realizar commits incrementais.
+6. Executar e validar o pipeline do Jenkins.
 
+### US-07 — Menu inicial e navegação do jogo
+
+**Responsável:** Mayara Cristina
+
+**História de usuário:**
+
+Como jogador, quero acessar um menu inicial e navegar entre as etapas do jogo, para conseguir iniciar uma partida e decidir se desejo jogar novamente após seu encerramento.
+
+**Descrição da funcionalidade:**
+Permitir que o jogador acesse um menu inicial e navegue até as configurações para iniciar uma partida. Ao final do jogo, o sistema perguntará “Jogar novamente?”, retornando às configurações em caso de “Sim” e encerrando o fluxo do jogo em caso de “Não”.
+
+**Critérios de aceite:**
+1. O sistema deve apresentar um menu inicial.
+2. O jogador deve conseguir acessar as configurações.
+3. Ao finalizar o jogo, deve aparecer a pergunta "Jogar novamente?".
+4. Ao selecionar "Sim", o sistema deve retornar às configurações.
+5. Ao selecionar "Não", o sistema deve encerrar o fluxo do jogo.
+
+Subtarefas técnicas:
+1. Implementar o menu inicial.
+2. Implementar a navegação entre as telas.
+3. Implementar a opção de jogar novamente.
+4. Criar testes unitários para as funções desenvolvidas.
+5. Realizar commits incrementais.
+6. Executar e validar o pipeline do Jenkins.
