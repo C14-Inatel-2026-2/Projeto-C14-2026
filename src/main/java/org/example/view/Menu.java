@@ -75,12 +75,10 @@ public class Menu {
                             break;
 
                         case 2:
-                            //Vai para adicionar jogador
                             caso = 3;
                             break;
 
                         case 3:
-                            //Vai para adicionar jogador
                             caso = 4;
                             break;
 
