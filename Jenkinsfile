@@ -58,5 +58,27 @@ pipeline {
                 '''
             }
         }
+        stage('Deploy Render') {
+            when {
+                expression {
+                    return env.GIT_BRANCH == 'origin/main'
+                }
+            }
+
+            steps {
+                withCredentials([
+                    string(
+                        credentialsId: 'render-deploy-hook',
+                        variable: 'RENDER_DEPLOY_HOOK_URL'
+                    )
+                ]) {
+                    bat '''
+                        @echo off
+                        curl.exe --fail --silent --show-error --request POST "%RENDER_DEPLOY_HOOK_URL%&ref=%GIT_COMMIT%"
+                    '''
+                }
+            }
+        }
+
     }
 }
