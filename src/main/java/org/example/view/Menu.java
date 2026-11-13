@@ -250,7 +250,7 @@ public class Menu {
                             break;
 
                         case 2:
-                            System.out.println("Encerrando MovieGuesser");
+                            System.out.println("Obrigado por jogar o MovieGuesser!");
                             caso = 0;
                             break;
 

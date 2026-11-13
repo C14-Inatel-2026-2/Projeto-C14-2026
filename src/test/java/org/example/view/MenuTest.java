@@ -123,7 +123,7 @@ public class MenuTest {
             String resultado = saida.toString();
 
             assertTrue(resultado.contains("Jogar novamente?"));
-            assertTrue(resultado.contains("Encerrando MovieGuesser"));
+            assertTrue(resultado.contains("Obrigado por jogar o MovieGuesser!"));
         } finally {
             System.setOut(saidaOriginal);
         }
@@ -147,7 +147,7 @@ public class MenuTest {
 
                 assertTrue(resultado.contains("Voltando às configurações"));
                 assertTrue(resultado.contains("CONFIGURAÇÕES DA PARTIDA"));
-                assertTrue(resultado.contains("Encerrando MovieGuesser"));
+                assertTrue(resultado.contains("Obrigado por jogar o MovieGuesser!"));
 
             } finally {
                 System.setOut(saidaOriginal);
