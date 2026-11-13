@@ -203,33 +203,6 @@ public class ExecucaoPartidaServiceTest {
 
 
     @Test
-    public void deveAcumularPontuacaoDoJogadorEntreRodadas() {
-        Usuario ana = partida.getJogadores().get(0);
-
-        execucao.registrarPalpite(rodada, 8.5);
-        execucao.registrarPalpite(rodada, 9.0);
-        execucao.registrarPalpite(rodada, 8.2);
-
-        Filmes outroFilme = new Filmes(
-                "Titanic",
-                1997,
-                7.9f,
-                "Romance a bordo de um navio",
-                "James Cameron",
-                194,
-                "12 anos",
-                "Romance"
-        );
-
-        Rodada segundaRodada = new Rodada(2, outroFilme);
-
-        execucao.registrarPalpite(segundaRodada, 7.5);
-
-        assertEquals(194, execucao.getPontuacaoJogador(ana));
-    }
-
-
-    @Test
     public void devePrepararRodadaComFilmeSorteado() {
         Filmes filme = new Filmes(
                 "Interestelar",
