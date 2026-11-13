@@ -85,7 +85,7 @@ public class Menu {
                             break;
 
                         case 4:
-                            System.out.println("Encerrando MovieGuesser");
+                            System.out.println("Obrigado por jogar o MovieGuesser!");
 
                             caso = 0;
                             break;
@@ -210,8 +210,6 @@ public class Menu {
                             break;
 
                         case 2:
-                            System.out.println("Preparando início da partida");
-
                             if(executarPartidas()){
                                 caso = 6;
                             }else{
