@@ -4,7 +4,7 @@ import org.example.view.Menu;
 
 public class Main{
     public static void main(String[] args){
-        System.out.println("MovieGuesser funcionando!");
+        System.out.println("Bem-vindo ao MovieGuesser!");
         Menu menu = new Menu();
 
         menu.GerarTela(1);
