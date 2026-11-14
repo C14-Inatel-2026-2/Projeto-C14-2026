@@ -65,12 +65,8 @@ public class FluxoPartidaService {
                 );
 
                 double palpite = lerPalpite();
-
-                int pontos = execucao.registrarPalpite(rodada, palpite);
-
-                System.out.println(
-                        "\nVocê ganhou " + pontos + " pontos!"
-                );
+                execucao.registrarPalpite(rodada, palpite);
+                System.out.println("\nPalpite registrado!");
             }
         }
 
