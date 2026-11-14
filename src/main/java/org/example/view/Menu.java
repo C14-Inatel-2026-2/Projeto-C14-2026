@@ -28,6 +28,18 @@ public class Menu {
         this.scanner = scanner;
     }
 
+    private void exibirJogadoresCadastrados(){
+        System.out.println("Jogadores Cadastrados");
+
+        for(Jogador jogador : gerenciador.getJogadores()){
+            System.out.println(
+                    "ID: " + jogador.getId() + " | Nome: " + jogador.getNome()
+            );
+        }
+
+        System.out.println("");
+    }
+
     public void GerarTela(int caso) {
 
         while (caso != 0) {
@@ -98,14 +110,7 @@ public class Menu {
                 case 3:
                     System.out.println("");
                     System.out.println("======= Adicionando Jogador =======");
-                    System.out.println("Jogadores Cadastrados");
-
-                    for (Jogador jogador : gerenciador.getJogadores()) {
-                        System.out.println(
-                                "ID: " + jogador.getId() + " | Nome: " + jogador.getNome()
-                        );
-                    }
-                    System.out.println("");
+                    exibirJogadoresCadastrados();
 
                     System.out.print("insira o nome desejado: ");
                     nome = scanner.nextLine().trim();
@@ -124,14 +129,7 @@ public class Menu {
                 case 4:
                     System.out.println("");
                     System.out.println("======== Removendo Jogador ========");
-                    System.out.println("Jogadores Cadastrados");
-
-                    for (Jogador jogador : gerenciador.getJogadores()) {
-                        System.out.println(
-                                "ID: " + jogador.getId() + " | Nome: " + jogador.getNome()
-                        );
-                    }
-                    System.out.println("");
+                    exibirJogadoresCadastrados();
 
                     System.out.print("insira o id desejado: ");
 
