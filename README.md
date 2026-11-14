@@ -410,11 +410,66 @@ Mostrar menu inicial, acessar configurações, iniciar partida e oferecer o flux
 
 ## 9. Integração contínua, testes e relatórios
 
-O pipeline Jenkins inclui etapas de compilação, testes JUnit, relatório JaCoCo, empacotamento e cópia do JAR para o diretório de deploy.
 
-**Evidências a anexar/linkar:** URL do build Jenkins; relatórios JUnit; relatório JaCoCo arquivado; artefato JAR; captura da execução completa; 
-histórico de jobs e autoria dos jobs por integrante. O PDF exige **pelo menos um job por integrante, comitado pelo próprio** — conferir essa exigência
-no Jenkinsfile e no histórico Git.
+## 9.1 Integração Contínua e Entrega Contínua (CI/CD)
+
+Tendo como objetivo manter a qualidade, a confiabilidade e a integridade do código, nosso projeto utiliza as práticas de **Integração Contínua (CI)** e **Entrega Contínua (CD)**, por meio da ferramenta **Jenkins**, integrada ao nosso repositório no GitHub.
+
+Nosso processo automatizado contempla a compilação do projeto, execução dos testes, geração do relatório de cobertura, empacotamento da aplicação e etapas de deploy.
+
+### 9.2. Integração Contínua
+
+A integração contínua do MovieGuesser foi estruturada utilizando as seguintes ferramentas:
+
+- **GitHub:** armazenamento, versionamento e integração do código desenvolvido pelos integrantes.
+- **Jenkins:** gerenciamento e execução das etapas automatizadas do pipeline.
+- **Apache Maven:** gerenciamento das dependências, compilação, execução dos testes e empacotamento.
+- **Render:** plataforma de hospedagem utilizada na etapa de deploy em nuvem.
+
+O Jenkins utiliza um arquivo chamado `Jenkinsfile`, localizado na raiz do repositório, que define as etapas necessárias para construir, testar e preparar a aplicação para distribuição.
+
+O objetivo dessa integração é permitir que alterações realizadas no código sejam verificadas de maneira padronizada, reduzindo a necessidade de executar manualmente todas as operações de compilação e testes.
+
+### 9.3. Estrutura do Pipeline Jenkins
+
+O pipeline foi desenvolvido e dividido em **seis etapas**, cada uma responsável por uma atividade do processo de integração e entrega.
+
+#### 1. Build
+
+A primeira etapa é responsável pela compilação do projeto Java utilizando o Maven.
+
+#### 2. Testes JUnit
+
+Após a compilação, o Jenkins executa os testes automatizados existentes no projeto.
+
+Os resultados são coletados a partir dos arquivos XML produzidos pelo **Maven Surefire**, permitindo visualizar quais testes foram executados e identificar eventuais falhas.
+
+#### 3. Code Coverage
+
+A etapa de cobertura utiliza o plugin **JaCoCo** para gerar relatórios sobre a quantidade de código exercitada durante a execução dos testes.
+
+Os relatórios são arquivados como artefatos do Jenkins, possibilitando a consulta posterior dos resultados.
+
+#### 4. Package
+
+Com a execução das etapas anteriores, o Maven realiza o empacotamento da aplicação.
+
+O processo gera o arquivo `MovieGuesser-1.0-SNAPSHOT.jar`, que contém a aplicação compilada e suas dependências necessárias.
+
+#### 5. Deploy
+
+Nesta etapa, o arquivo JAR gerado é copiado para o diretório de distribuição do Jenkins.
+
+Essa operação organiza e disponibiliza o artefato para utilização posterior.
+
+#### 6. Deploy Render
+
+A última etapa realiza a integração com a plataforma **Render**, acionando um *deploy hook* por meio de uma requisição HTTP.
+
+A URL do hook é obtida por meio de uma credencial configurada no Jenkins, identificada como `render-deploy-hook`, evitando a exposição dessa informação diretamente no código-fonte.
+
+As etapas de **Deploy** e **Deploy Render** possuem uma condição no `Jenkinsfile` para execução apenas quando `GIT_BRANCH` corresponde a `origin/main`.
+
 
 ## 10. Uso de IA
 
