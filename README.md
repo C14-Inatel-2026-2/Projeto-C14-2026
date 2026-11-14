@@ -2,7 +2,7 @@
 
 ## 1. Descrição do Projeto
 
-O projeto consiste no desenvolvimento de um jogo de adivinhação de notas de filmes, no qual os participantes devem tentar estimar a avaliação de diferentes filmes em uma escala de 0 a 10.
+O projeto MovieGuesser, consiste no desenvolvimento de um jogo de adivinhação de notas de filmes, no qual os participantes devem tentar estimar a avaliação de diferentes filmes em uma escala de 0 a 10.
 
 Antes do início da partida, os jogadores informam seus nomes e configuram a quantidade de rodadas e participantes. Durante o jogo, o sistema apresenta filmes selecionados aleatoriamente, sem repetições na mesma partida. Cada jogador envia seu palpite e recebe uma pontuação de acordo com a proximidade entre sua estimativa e a nota correta do filme.
 
@@ -16,13 +16,92 @@ Maven: Ferramenta utilizada para o gerenciamento das dependências e a organiza�
 
 Jenkins: Ferramenta utilizada para a criação e execução do pipeline de integração contínua (CI).
 
+JUnit : Ferramenta para construção e testes.
+Jacoco: Ferramenta para cobertura de teste.
+
 Git e GitHub: ferramentas utilizadas para versionamento do código e colaboração entre os integrantes.
 
 Jira: plataforma utilizada para organizar o Product Backlog, planejar as Sprints e acompanhar as histórias de usuário.
 
 Scrum: metodologia ágil adotada para o planejamento e o gerenciamento das atividades do projeto.
 
-## 3. Requisitos Funcionais (RF)
+Render: Ferramenta para deploy na nuvem.
+
+
+## 3. Instalação e execução
+
+### 3.1. Pré-requisitos
+
+Para executar o projeto localmente, é necessário ter instalado:
+
+- Java JDK 17 ou versão compatível.
+- Apache Maven.
+- Git para clonar o repositório.
+
+Verifique a instalação do Java e do Maven:
+
+```powershell
+java -version
+mvn -version
+```
+
+### 3.2. Instalação e execução local
+
+Clone o repositório e acesse a pasta do projeto:
+
+```powershell
+git clone https://github.com/viniciusbg18/Projeto-C14-2026.git
+cd Projeto-C14-2026
+```
+
+Compile o projeto, execute os testes automatizados e gere o arquivo JAR:
+
+```powershell
+mvn clean package
+```
+
+Execute o MovieGuesser pelo terminal:
+
+```powershell
+java -jar target/MovieGuesser-1.0-SNAPSHOT.jar
+```
+
+O jogo será iniciado no terminal, permitindo o cadastro do administrador, a configuração das rodadas e a participação dos jogadores.
+
+### 3.3. Deploy na nuvem — Render
+
+O projeto possui um serviço publicado na plataforma **Render**, integrado ao processo de entrega da aplicação.
+
+**Link do deploy:**
+
+https://movieguesser-bpnf.onrender.com/
+
+O deploy disponibiliza o serviço em um ambiente remoto. Como o MovieGuesser utiliza uma interface de terminal, a execução interativa do jogo está documentada na seção de execução local.
+
+### 3.4. Integração contínua — Jenkins
+
+O projeto:
+
+- Compilação do código Java.
+- Execução dos testes unitários automatizados.
+- Geração de relatórios de testes e cobertura de código.
+- Empacotamento da aplicação em um arquivo JAR.
+- Execução das etapas de deploy e integração com o ambiente de nuvem.
+
+Esse processo contribui para identificar possíveis falhas, verificar a qualidade do código e facilitar a entrega de novas versões do MovieGuesser.
+
+
+## 4. Como jogar
+
+1. Inicie o programa e informe o nome do administrador, que será também o primeiro participante.
+2. No menu inicial, escolha **Jogar**. Se desejar, antes disso use **Adicionar jogador** para incluir outras pessoas; o cadastro adicional é opcional.
+3. Nas configurações, defina a quantidade de rodadas (de **1 a 10**) e selecione **Iniciar partida**.
+4. Observe o filme e as dicas exibidas (ano, gênero e diretor). Digite um palpite para a **nota do IMDb**, entre **0 e 10**; o terminal também aceita vírgula como separador decimal.
+5. Cada participante joga na sua vez. A rodada termina depois que todos tiverem enviado o palpite; o jogo continua até atingir o limite configurado.
+6. Consulte a pontuação e o resultado ao término, conforme o fluxo de classificação implementado.
+
+
+## 5. Requisitos Funcionais (RF)
 
 Os requisitos funcionais descrevem as funcionalidades que o sistema deve oferecer.
 
@@ -34,7 +113,8 @@ Os requisitos funcionais descrevem as funcionalidades que o sistema deve oferece
 - **RF06 – Cálculo de pontuação:** O sistema deve calcular a pontuação de cada jogador considerando a diferença entre o palpite e a nota correta do filme.
 - **RF07 – Acumulação de pontos:** O sistema deve acumular automaticamente a pontuação dos jogadores ao longo das rodadas.
 - **RF08 – Resultado e classificação da partida:** O sistema deve apresentar a pontuação final dos participantes e gerar um pódio com a classificação dos jogadores ao término da partida.
-## 3. Requisitos Não Funcionais (RNF)
+
+## 6. Requisitos Não Funcionais (RNF)
 
 Os requisitos não funcionais descrevem características de qualidade e restrições que o sistema deve atender.
 
@@ -45,28 +125,85 @@ Os requisitos não funcionais descrevem características de qualidade e restriç
 - **RNF05 – Compatibilidade:** O sistema deve funcionar adequadamente no ambiente e nas plataformas definidos para sua implementação.
 - **RNF06 – Manutenibilidade:** O código deve ser organizado e estruturado de forma a facilitar futuras correções e melhorias.
 
-## Planejamento e Gerenciamento — Scrum 
+## 7. Metodologia de desenvolvimento e Gerenciamento
 
-O planejamento e o acompanhamento das atividades do projeto Movie Guesser são realizados utilizando a metodologia ágil Scrum, no Jira.
+O projeto declara o uso de **Scrum**, com histórias e tarefas acompanhadas no **Jira**, versionamento no **GitHub**, revisão por **Pull Requests** e integração contínua no **Jenkins**.
 
-### US-01 - Cadastro e Gerenciamento de Jogadores
+**Distribuição técnica documentada:** João Selim (cadastro), Ana Clara (configuração e rodízio), Giovanna Cabral (sorteio e execução), 
+Vinícius Godoy (pontuação e ranking) e Mayara Cristina (menu e navegação). Essa divisão descreve responsabilidades das histórias e **não substitui** o registro dos papéis Scrum 
+(PO, facilitador, QA etc.).
 
-**Responsável:** João Selim 
+**Papéis Scrum exercidos:**
 
-**História de usuário:** Como jogador, quero me cadastrar e adicionar outros participantes, para que todos possam participar do jogo e um administrador possa gerenciar as configurações.
+- **Product Owner:** [informar integrante e como foi definido].
+- **Scrum Master:** [informar integrante e como foi definido].
+- **Equipe de desenvolvimento:** [informar integrantes].
 
-**Descrição das funcionalidades:** 
+A definição desses papéis ocorreu por meio de [explicar como o grupo decidiu].
 
-Permitir que o jogador se cadastre e, sendo o primeiro cadastrado, seja identificado como administrador. O administrador poderá adicionar outros jogadores pelo botão “+”, e cada jogador terá um ID único. Os jogadores cadastrados ficarão disponíveis durante as partidas.
+### Organização das sprints e reuniões
 
-**Critérios de aceite:**
+O desenvolvimento foi organizado em sprints acompanhadas pelo backlog do Jira.
+
+**Sprint 1 — Estrutura do jogo**
+
+- **Início:** 02/11/2026.
+- **Término planejado:** 13/11/2026.
+- **Quantidade de histórias cadastradas:** 7.
+- **Objetivo:** permitir a identificação dos jogadores, a configuração da partida e a seleção aleatória de filmes sem repetição.
+
+**Reuniões e acompanhamento:**
+
+- **Frequência:** [informar frequência real].
+- **Formato:** [presencial, online ou híbrido].
+- **Atividades:** [descrever como o grupo acompanhava o progresso, discutia dificuldades e distribuía tarefas].
+
+### Definition of Ready (DoR) — Definição de preparado
+
+[Confirmar quais critérios foram realmente utilizados pelo grupo.]
+
+Critérios a verificar:
+
+- História de usuário descrita e compreendida pela equipe.
+- Funcionalidade e critérios de aceitação definidos.
+- Responsável pela implementação identificado.
+- Dependências e dúvidas principais discutidas.
+
+### Definition of Done (DoD) — Definição de pronto
+
+[Confirmar quais critérios foram realmente utilizados pelo grupo.]
+
+Critérios a verificar:
+
+- Funcionalidade implementada conforme os critérios de aceitação.
+- Código versionado no GitHub.
+- Testes automatizados executados.
+- Pull request revisado e integrado à branch principal.
+- Status da história atualizado no Jira.
+
+## 8. Histórias de usuário
+
+
+### US-01 — Cadastro e gerenciamento de jogadores
+
+**Responsável:** João Selim
+
+**História de usuário:** Como jogador, quero me cadastrar e adicionar outros participantes, para que todos possam participar e um administrador gerencie as configurações.
+
+**Descrição das funcionalidades:**
+
+O primeiro cadastro cria o administrador (ID único), que também participa da partida; novos jogadores recebem IDs próprios e ficam disponíveis para jogar. No terminal, a adição ocorre por uma opção do menu, e não por botão gráfico `+`.
+
+**Critérios de aceitação:**
+
 1. O sistema deve permitir o cadastro inicial de um jogador.
 2. O primeiro jogador cadastrado deve ser identificado como administrador.
 3. O administrador deve conseguir adicionar outros jogadores pelo botão "+".
 4. Cada jogador deve possuir um identificador único.
 5. Os jogadores cadastrados devem estar disponíveis durante as partidas.
 
-Subtarefas técnicas:
+**Subtarefas técnicas:**
+
 1. Implementar o cadastro inicial.
 2. Implementar a identificação do administrador.
 3. Implementar a adição de novos jogadores.
@@ -75,19 +212,22 @@ Subtarefas técnicas:
 6. Realizar commits incrementais.
 7. Executar e validar o pipeline do Jenkins.
 
-### US-02 — Configuração da partida e rodízio de jogadores
+---
+
+### US-02 — Configuração e rodízio de jogadores
 
 **Responsável:** Ana Clara
 
-**História de usuário:**
+**História de usuário:** Como administrador, quero definir a quantidade de rodadas e iniciar a partida, para controlar sua duração e a ordem de participação.
 
-Como administrador, quero configurar a quantidade de rodadas e iniciar o jogo, para controlar sua duração e garantir que os jogadores participem em uma ordem organizada.
+**Descrição das funcionalidades:**
 
-**Descrição da funcionalidade:**
+Configurar de 1 a 10 rodadas; iniciar por uma opção numérica do menu; respeitar o limite e encerrar ao final.
 
-Permitir que o administrador defina a quantidade de rodadas e inicie o jogo por meio de um switch. A cada nova rodada, a ordem dos jogadores será rotacionada uma posição para a direita, com base nos IDs, e o jogo será finalizado ao atingir o número de rodadas configurado.
+**Pendente de conferência no fluxo completo:** rotação da ordem dos participantes uma posição à direita entre rodadas, conforme a história original.
 
-**Critérios de aceite:**
+**Critérios de aceitação:**
+
 1. O administrador deve conseguir definir a quantidade de rodadas.
 2. O sistema deve permitir iniciar o jogo por meio de um switch.
 3. A quantidade de rodadas configurada deve ser respeitada.
@@ -95,7 +235,8 @@ Permitir que o administrador defina a quantidade de rodadas e inicie o jogo por 
 5. O rodízio deve deslocar a ordem dos jogadores uma posição para a direita, utilizando seus IDs.
 6. Ao atingir a quantidade de rodadas configurada, o jogo deve ser finalizado.
 
-Subtarefas técnicas:
+**Subtarefas técnicas:**
+
 1. Implementar a tela de configurações.
 2. Implementar a seleção da quantidade de rodadas.
 3. Implementar o switch de início.
@@ -105,40 +246,53 @@ Subtarefas técnicas:
 7. Realizar commits incrementais.
 8. Executar e validar o pipeline do Jenkins.
 
-### US-03 - Selecionar filmes aleatoriamente sem repetição
+---
+
+### US-03 — Sorteio de filmes sem repetição
 
 **Responsável:** Giovanna Cabral
 
-**História de usuário:** 
+**História de usuário:** Como jogador, quero receber um filme aleatório em cada rodada, sem repetição durante a mesma partida, para ter uma experiência variada.
 
-Como jogador, quero receber um filme selecionado aleatoriamente a cada rodada, sem que haja repetições na mesma partida, para ter uma experiência variada durante o jogo.
+**Descrição das funcionalidades:**
 
-**Descrição da funcionalidade:**
+Sortear um filme por rodada, não repetir filmes na partida e apresentar tantos filmes distintos quantas forem as rodadas realizadas.
 
-Permitir que os jogadores possam jogar diferentes rodadas da partida sem com que o filme sorteado seja algum que já tenha sido sorteado em rodadas anteriores, mantendo o ritmo do jogo mais fluido e coerente.
+**Critérios de aceitação:**
 
-**Critérios de Aceite:**
 1. Ao iniciar uma rodada, o sistema deverá selecionar um filme aleatoriamente.
 2. Cada rodada deverá apresentar apenas um filme.
 3. Um filme já apresentado não poderá aparecer novamente durante a mesma partida.
-4. Ao finalizar as rodadas, o jogador deverá ter recebido um número de filmes diferentes referente ao número de rodadas jogadas.
-5. Criar testes unitários
-6. Realizar commits incrementais
-7. Executar e validar o pipeline do Jenkins
+4. Ao finalizar as cinco rodadas, o jogador deverá ter recebido cinco filmes diferentes.
+
+
+**Subtarefas técnicas:**
+
+1. Implementar o serviço de sorteio aleatório de filmes (`SorteioService`).
+2. Implementar o controle dos filmes já sorteados durante a partida.
+3. Garantir que um filme não seja selecionado novamente na mesma partida.
+4. Integrar o sorteio de filmes à execução das rodadas.
+5. Garantir que cada rodada utilize apenas um filme sorteado.
+6. Criar testes unitários para validar a seleção aleatória e a ausência de repetições.
+7. Realizar commits incrementais das funcionalidades desenvolvidas.
+8. Executar e validar os testes no pipeline do Jenkins.
+
+---
 
 ### US-04 — Execução da partida e envio de palpites
 
 **Responsável:** Giovanna Cabral
 
-**História de usuário:** 
+**História de usuário:** Como jogador, quero visualizar o filme e registrar meu palpite sobre sua nota, para participar das rodadas e receber pontos.
 
-Como jogador, quero visualizar as perguntas sobre os filmes e registrar meus palpites, para participar das rodadas e receber uma pontuação de acordo com minhas respostas.
+**Descrição das funcionalidades:**
 
-**Descrição da funcionalidade:**
+Apresentar jogador atual, filme e dicas (ano, gênero, diretor); receber um palpite de nota IMDb de 0 a 10; registrar o palpite, avançar para o próximo participante e encerrar a rodada somente depois de todos participarem.
 
-Permitir que o jogador visualize o filme da sua vez e registre palpites sobre nota, ano, gênero e diretor. O sistema apresentará a ordem dos jogadores, registrará os palpites enviados e passará para o próximo jogador, encerrando a rodada quando todos tiverem participado.
+Ano, gênero e diretor não são perguntas a responder na implementação atual.
 
-**Critérios de aceite:**
+**Critérios de aceitação:**
+
 1. O sistema deve apresentar a ordem dos jogadores.
 2. O sistema deve apresentar o filme correspondente à vez do jogador.
 3. O jogador deve conseguir responder às perguntas sobre nota, ano, gênero e diretor.
@@ -146,7 +300,8 @@ Permitir que o jogador visualize o filme da sua vez e registre palpites sobre no
 5. Após a participação de um jogador, o sistema deve passar para o próximo.
 6. Quando todos tiverem participado, a rodada deve ser encerrada.
 
-Subtarefas técnicas:
+**Subtarefas técnicas:**
+
 1. Implementar a tela de execução da partida.
 2. Exibir o jogador atual.
 3. Implementar a exibição das perguntas.
@@ -157,21 +312,22 @@ Subtarefas técnicas:
 8. Realizar commits incrementais.
 9. Executar e validar o pipeline do Jenkins.
 
-### US-05 — Visualizar resultados e ranking dos jogadores
+---
+
+### US-05 — Visualização de resultados e ranking
 
 **Responsável:** Vinícius Godoy
 
-**História de usuário:**
+**História de usuário:** Como jogador, quero consultar a classificação final e descobrir quem venceu, para acompanhar o desempenho dos participantes.
 
-Como jogador, quero visualizar o ranking ao final de cada partida e o resultado geral do jogo, para acompanhar minha pontuação e descobrir quem foi o vencedor.
+**Descrição das funcionalidades:**
 
-**Descrição da funcionalidade:**
+Mostrar nomes e pontuações, classificação e vencedor; manter os resultados temporariamente durante o jogo.
 
-Permitir que o jogador visualize o ranking ao final de cada partida, com o número da partida, os nomes e os pontos dos jogadores. Ao final de todas as partidas, o sistema apresentará o ranking geral com as pontuações acumuladas e identificará o vencedor, mantendo os resultados temporariamente durante o jogo.
+**Pendente de conferência no fluxo completo:** verificar se o ranking por partida e o ranking geral descritos na história original correspondem ao fluxo atual.
 
-A pontuação máxima por rodada será de 100 pontos, e o cálculo deverá garantir que o jogador nunca receba uma pontuação negativa.
+**Critérios de aceitação:**
 
-**Critérios de aceite:**
 1. Ao final de cada partida, o sistema deve apresentar um ranking.
 2. O ranking deve exibir o número da partida, os nomes e os pontos dos jogadores.
 3. Ao final de todas as partidas, o sistema deve apresentar o ranking geral.
@@ -179,7 +335,8 @@ A pontuação máxima por rodada será de 100 pontos, e o cálculo deverá garan
 5. O sistema deve identificar o vencedor.
 6. Os resultados devem ser mantidos temporariamente durante o jogo.
 
-Subtarefas técnicas:
+**Subtarefas técnicas:**
+
 1. Implementar o ranking de cada partida.
 2. Implementar o acúmulo de pontuação.
 3. Implementar o ranking geral.
@@ -188,72 +345,84 @@ Subtarefas técnicas:
 6. Realizar commits incrementais.
 7. Executar e validar o pipeline do Jenkins.
 
-**Regra de cálculo da pontuação:**
+---
 
-A pontuação será determinada pela seguinte fórmula:
-
-P = max(0, PM - (|NF - NJ| × 10))
-
-Onde:
-
-- P = Pontuação recebida pelo jogador.
-- PM = Pontuação máxima da rodada (100 pontos).
-- NF = Nota oficial do filme no IMDb.
-- NJ = Nota informada pelo jogador.
-
-A cada 0,1 ponto de diferença entre o palpite e a nota real, será descontado 1 ponto da pontuação máxima.
-
-Os palpites deverão possuir apenas uma casa decimal.
-
-### US-06 — Calcular pontuação dos jogadores
+### US-06 — Cálculo de pontuação
 
 **Responsável:** Vinícius Godoy
 
-**História de usuário:**
+**História de usuário:** Como jogador, quero receber pontos conforme a proximidade entre meu palpite e a nota do filme, para avaliar meu desempenho.
 
-Como jogador, quero que meus palpites sejam avaliados de acordo com uma fórmula de pontuação, para receber pontos conforme o desempenho das minhas respostas.
+**Descrição das funcionalidades:**
 
-**Descrição da funcionalidade:**
-Permitir que os palpites do jogador sejam avaliados por uma fórmula de pontuação definida pela equipe, considerando os critérios de cada pergunta. Os pontos serão associados ao jogador correspondente e disponibilizados para a geração dos rankings.
+Aplicar a fórmula documentada, impedir pontuação negativa, associar os pontos ao participante correto e disponibilizá-los para o ranking.
 
-Os resultados serão mantidos apenas durante a execução da partida, sem armazenamento permanente ou utilização de banco de dados.
+Na implementação atual, o cálculo considera o palpite da nota, não respostas separadas sobre ano, gênero e diretor.
 
-**Critérios de aceite:**
+**Critérios de aceitação:**
+
 1. O sistema deve calcular a pontuação utilizando a fórmula definida pela equipe.
 2. A pontuação deve considerar os critérios de avaliação de cada pergunta.
 3. Os pontos devem ser associados ao jogador correspondente.
 4. Os resultados devem ser disponibilizados para a geração dos rankings.
 
-Subtarefas técnicas:
-1. Implementar a fórmula de pontuação definida 
+**Subtarefas técnicas:**
+
+1. Implementar a fórmula de pontuação definida pelo Selim.
 2. Calcular a pontuação dos palpites.
 3. Associar os pontos aos respectivos jogadores.
 4. Criar testes unitários para os cálculos.
 5. Realizar commits incrementais.
 6. Executar e validar o pipeline do Jenkins.
 
-### US-07 — Menu inicial e navegação do jogo
+---
+
+### US-07 — Menu inicial e navegação
 
 **Responsável:** Mayara Cristina
 
-**História de usuário:**
+**História de usuário:** Como jogador, quero navegar entre o menu e as configurações e decidir se jogo novamente, para controlar a experiência.
 
-Como jogador, quero acessar um menu inicial e navegar entre as etapas do jogo, para conseguir iniciar uma partida e decidir se desejo jogar novamente após seu encerramento.
+**Descrição das funcionalidades:**
 
-**Descrição da funcionalidade:**
-Permitir que o jogador acesse um menu inicial e navegue até as configurações para iniciar uma partida. Ao final do jogo, o sistema perguntará “Jogar novamente?”, retornando às configurações em caso de “Sim” e encerrando o fluxo do jogo em caso de “Não”.
+Mostrar menu inicial, acessar configurações, iniciar partida e oferecer o fluxo de nova partida ou encerramento.
 
-**Critérios de aceite:**
+**Pendente de conferência no fluxo completo:** confirmar o comportamento de "Jogar novamente?".
+
+**Critérios de aceitação:**
+
 1. O sistema deve apresentar um menu inicial.
 2. O jogador deve conseguir acessar as configurações.
 3. Ao finalizar o jogo, deve aparecer a pergunta "Jogar novamente?".
 4. Ao selecionar "Sim", o sistema deve retornar às configurações.
 5. Ao selecionar "Não", o sistema deve encerrar o fluxo do jogo.
 
-Subtarefas técnicas:
+**Subtarefas técnicas:**
+
 1. Implementar o menu inicial.
 2. Implementar a navegação entre as telas.
 3. Implementar a opção de jogar novamente.
 4. Criar testes unitários para as funções desenvolvidas.
 5. Realizar commits incrementais.
 6. Executar e validar o pipeline do Jenkins.
+
+
+## 9. Integração contínua, testes e relatórios
+
+O pipeline Jenkins inclui etapas de compilação, testes JUnit, relatório JaCoCo, empacotamento e cópia do JAR para o diretório de deploy.
+
+**Evidências a anexar/linkar:** URL do build Jenkins; relatórios JUnit; relatório JaCoCo arquivado; artefato JAR; captura da execução completa; 
+histórico de jobs e autoria dos jobs por integrante. O PDF exige **pelo menos um job por integrante, comitado pelo próprio** — conferir essa exigência
+no Jenkinsfile e no histórico Git.
+
+## 10. Uso de IA
+
+Foi utilizado **ChatGPT (OpenAI)** como apoio individual em tarefas de desenvolvimento e documentação do MovieGuesser, incluindo orientação sobre código Java, interpretação de logs Maven/Jenkins, fluxo Git e revisão de requisitos. 
+Os exemplos abaixo são prompts reais desta interação;
+
+| Exemplo de prompt real | Uso da resposta | Decisão registrada |
+|---|---|---|
+
+**Dinâmica de uso:** apoio conversacional individual, com validação das sugestões por leitura de código, testes e execução do jogo; as respostas não foram adotadas automaticamente. **Trabalho humano confirmado nesta interação:** operação do Git/GitHub, execução de pipelines, inspeção dos resultados e teste manual do fluxo individual. A autoria das demais implementações e dos testes deve ser verificada no histórico de commits; não é possível afirmar que todo o código restante foi produzido sem IA.
+
+**Exemplo de orientação que não deve ser adotada sem revisão:** remover um teste que falha apenas para obter pipeline verde não comprova a correção do comportamento testado. O grupo deve manter testes relevantes e revisar eventuais lacunas de cobertura.
