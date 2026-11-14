@@ -80,39 +80,37 @@ public class ExecucaoPartidaService {
         return false;
     }
 
-
-    public int registrarPalpite(Rodada rodada, double palpite) {
-        if (!partida.estaAtiva()) {
+    private void validarPalpite(Rodada rodada, double palpite){
+        if(!partida.estaAtiva()){
             throw new IllegalStateException("A partida não está ativa.");
         }
 
-        if (rodada == null) {
+        if(rodada == null){
             throw new IllegalArgumentException("A rodada não pode ser nula.");
         }
 
-        if (Double.isNaN(palpite) || Double.isInfinite(palpite)
-                || palpite < 0 || palpite > 10) {
-            throw new IllegalArgumentException(
-                    "O palpite deve estar entre 0 e 10."
-            );
+        if(Double.isNaN(palpite) || Double.isInfinite(palpite) || palpite < 0 || palpite > 10){
+            throw new IllegalArgumentException("O palpite deve estar entre 0 e 10.");
+        }
+    }
+
+    private void validarRodada(Rodada rodada){
+        if (sorteioService != null && rodadaAtual == null){
+            throw new IllegalStateException("É necessário preparar a rodada antes de registrar palpites.");
         }
 
-        if (sorteioService != null && rodadaAtual == null) {
-            throw new IllegalStateException(
-                    "É necessário preparar a rodada antes de registrar palpites."
-            );
-        }
-
-        if (rodadaAtual == null) {
+        if(rodadaAtual == null){
             rodadaAtual = rodada;
-        } else if (rodadaAtual != rodada) {
-            throw new IllegalArgumentException(
-                    "Todos os jogadores devem responder à mesma rodada."
-            );
+        }else if(rodadaAtual != rodada){
+            throw new IllegalArgumentException("Todos os jogadores devem responder à mesma rodada.");
         }
+    }
 
+
+    public int registrarPalpite(Rodada rodada, double palpite) {
+        validarPalpite(rodada, palpite);
+        validarRodada(rodada);
         Usuario jogador = getJogadorAtual();
-
         int pontos;
 
         if (placar == null) {
