@@ -111,7 +111,12 @@ public class PlacarService {
     }
 
     public ResultadoPartida rankingPartida(int numeroPartida) {
-        var resultados = buscarPartida(numeroPartida).jogadores()
+        var resultados = resultadosDaPartida(numeroPartida);
+        return new ResultadoPartida(numeroPartida, ordenar(resultados));
+    }
+
+    private List<ResultadoJogador> resultadosDaPartida(int numeroPartida) {
+        return buscarPartida(numeroPartida).jogadores()
                 .entrySet().stream()
                 .map(item -> new ResultadoJogador(
                         item.getKey(),
@@ -119,15 +124,13 @@ public class PlacarService {
                         item.getValue().total()
                 ))
                 .toList();
-
-        return new ResultadoPartida(numeroPartida, ordenar(resultados));
     }
 
     public List<ResultadoJogador> rankingGeral() {
         Map<Integer, ResultadoJogador> totais = new HashMap<>();
 
         for (int numero : partidas.keySet().stream().sorted().toList()) {
-            for (ResultadoJogador jogador : rankingPartida(numero).ranking()) {
+            for (ResultadoJogador jogador : resultadosDaPartida(numero)) {
                 totais.merge(jogador.id(), jogador, (anterior, atual) ->
                         new ResultadoJogador(
                                 anterior.id(),
