@@ -135,11 +135,9 @@ Vinícius Godoy (pontuação e ranking) e Mayara Cristina (menu e navegação). 
 
 **Papéis Scrum exercidos:**
 
-- **Product Owner:** [informar integrante e como foi definido].
-- **Scrum Master:** [informar integrante e como foi definido].
-- **Equipe de desenvolvimento:** [informar integrantes].
-
-A definição desses papéis ocorreu por meio de [explicar como o grupo decidiu].
+- **Product Owner:** Giovanna Cabral
+- **Scrum Master:** Vinícius Godoy 
+- **Equipe de desenvolvimento:** Giovanna, Vinícius, Mayara, João e Ana.
 
 ### Organização das sprints e reuniões
 
@@ -158,31 +156,34 @@ O desenvolvimento foi organizado em sprints acompanhadas pelo backlog do Jira.
 - **Formato:** [presencial, online ou híbrido].
 - **Atividades:** [descrever como o grupo acompanhava o progresso, discutia dificuldades e distribuía tarefas].
 
+
 ### Definition of Ready (DoR) — Definição de preparado
 
-[Confirmar quais critérios foram realmente utilizados pelo grupo.]
+Embora o grupo não utilizasse formalmente o termo Definition of Ready (DoR), as tarefas eram iniciadas quando as informações necessárias para o desenvolvimento estavam definidas e compreendidas pelos integrantes.
 
-Critérios a verificar:
+Na prática, os critérios utilizados eram:
 
-- História de usuário descrita e compreendida pela equipe.
-- Funcionalidade e critérios de aceitação definidos.
-- Responsável pela implementação identificado.
-- Dependências e dúvidas principais discutidas.
+- A história de usuário deveria estar descrita e compreendida pela equipe.
+- A funcionalidade e os critérios de aceitação deveriam estar definidos.
+- O responsável pela implementação deveria estar identificado.
+- As principais dúvidas e dependências deveriam ser discutidas antes do início do desenvolvimento.
+
+Esses critérios ajudavam a equipe a compreender o que precisava ser desenvolvido e a organizar a distribuição das atividades.
 
 ### Definition of Done (DoD) — Definição de pronto
 
-[Confirmar quais critérios foram realmente utilizados pelo grupo.]
+O grupo considerava uma tarefa concluída após a implementação da funcionalidade, a execução dos testes e a abertura de um Pull Request no GitHub.
 
-Critérios a verificar:
+Na prática, os critérios utilizados eram:
 
-- Funcionalidade implementada conforme os critérios de aceitação.
-- Código versionado no GitHub.
-- Testes automatizados executados.
-- Pull request revisado e integrado à branch principal.
-- Status da história atualizado no Jira.
+- A funcionalidade deveria estar implementada conforme os requisitos definidos.
+- O código deveria estar versionado na branch do integrante responsável.
+- Os testes automatizados deveriam ser executados para verificar o funcionamento da implementação.
+- Um Pull Request deveria ser aberto no GitHub com as alterações realizadas.
+
+Dessa forma, a equipe utilizava os testes e os Pull Requests como principais critérios para considerar uma tarefa concluída, contribuindo para a organização e o acompanhamento do desenvolvimento.
 
 ## 8. Histórias de usuário
-
 
 ### US-01 — Cadastro e gerenciamento de jogadores
 
@@ -420,9 +421,39 @@ no Jenkinsfile e no histórico Git.
 Foi utilizado **ChatGPT (OpenAI)** como apoio individual em tarefas de desenvolvimento e documentação do MovieGuesser, incluindo orientação sobre código Java, interpretação de logs Maven/Jenkins, fluxo Git e revisão de requisitos. 
 Os exemplos abaixo são prompts reais desta interação;
 
-| Exemplo de prompt real | Uso da resposta | Decisão registrada |
-|---|---|---|
+| Exemplo de prompt real :
 
-**Dinâmica de uso:** apoio conversacional individual, com validação das sugestões por leitura de código, testes e execução do jogo; as respostas não foram adotadas automaticamente. **Trabalho humano confirmado nesta interação:** operação do Git/GitHub, execução de pipelines, inspeção dos resultados e teste manual do fluxo individual. A autoria das demais implementações e dos testes deve ser verificada no histórico de commits; não é possível afirmar que todo o código restante foi produzido sem IA.
+Giovanna : "O chat é o seguinte, rodei pipeline e funcionou de novo. Como é aquele comando que eu dou no CMD lá pra funcionar?"
 
-**Exemplo de orientação que não deve ser adotada sem revisão:** remover um teste que falha apenas para obter pipeline verde não comprova a correção do comportamento testado. O grupo deve manter testes relevantes e revisar eventuais lacunas de cobertura.
+Vinícius: "Por agora faremos outra mudança em relação as partidas, a imagem em anexo se trata do arquivo do jogo em funcionamento, 
+fizemos essa captura ontem a noite antes do estado atual do código. Se vc conseguir testar e rodar o código atual para ver se ainda está rodando 
+com a mesma tela da imagem, confira, se não for possível tudo bem também, podemos fazer a análise pelo código"
+
+Mayara: "Estou desenvolvendo um projeto em Java chamado MovieGuesser para a disciplina C14 de Engenharia de Software. Sou responsável pela US-07, que envolve a implementação do 
+menu inicial, navegação entre funcionalidades, configuração de partidas e opção de jogar novamente. Considerando as boas práticas de Engenharia de Software, analise meu código e me ajude a identificar possíveis melhorias na organização, legibilidade, tratamento de exceções e integração com as classes desenvolvidas pelos demais integrantes. Além disso, verifique se meus testes unitários com JUnit cobrem adequadamente os critérios de aceitação da história de usuário, explique eventuais erros de compilação ou execução e me oriente na utilização do Git, Maven e Jenkins para garantir a qualidade e a integração contínua do projeto. 
+Priorize explicações passo a passo, preservando as funcionalidades existentes e justificando cada alteração proposta."
+
+Ana: "Chat, estou trabalhando na implementação de uma funcionalidade do nosso projeto em Java e já tenho uma estrutura inicial das classes. Estou com dificuldade em desenvolver a parte 
+responsável pelo cadastro e gerenciamento dos jogadores. Pode me ajudar a pensar em como implementar essa funcionalidade, sugerindo métodos e ajustes nas classes que já existem? Quero entender como encaixar essa implementação na estrutura atual do projeto, mantendo a organização e os
+princípios de orientação a objetos. Se possível, explique o motivo das alterações e apresente exemplos de código."
+
+
+João:
+
+
+**Dinâmica de uso:** apoio conversacional individual, com validação das sugestões por leitura de código, testes e execução do jogo; as respostas não foram adotadas automaticamente. **Trabalho humano confirmado nesta interação:** 
+operação do Git/GitHub, execução de pipelines, inspeção dos resultados e teste manual do fluxo individual. 
+
+## Desenvolvimento realizado sem o auxílio de Inteligência Artificial
+
+Durante o desenvolvimento do **MovieGuesser**, diversas etapas foram realizadas de forma autônoma pela equipe, utilizando os conhecimentos adquiridos ao longo da disciplina de Engenharia de Software.
+
+A **idealização do jogo foi inteiramente desenvolvida pelos integrantes**, sem a utilização de inteligência artificial para pesquisar ou definir sua proposta. A equipe foi responsável por elaborar o conceito do MovieGuesser, estabelecer suas regras, definir a dinâmica das partidas e planejar as funcionalidades necessárias para seu funcionamento.
+
+As principais decisões conceituais e arquiteturais também foram tomadas pelos integrantes, incluindo a organização do projeto, a divisão das responsabilidades entre as classes e a aplicação dos princípios de Programação Orientada a Objetos. A estruturação do código foi planejada para separar as responsabilidades e facilitar a manutenção, a integração e a evolução das funcionalidades.
+
+Além disso, a equipe participou diretamente da elaboração das primeiras classes do sistema, como `Rodada.java`, `Partida.java`, `Filmes.java` e `Jogador.java`, definindo seus atributos, comportamentos e relacionamentos com base nas necessidades identificadas durante o planejamento do jogo.
+
+Outro aspecto desenvolvido pela equipe foi a **organização das entregas e das etapas de implementação**, incluindo a definição das funcionalidades, a distribuição das tarefas entre os integrantes e as decisões relacionadas à apresentação e à disponibilização do projeto.
+
+Dessa forma, embora ferramentas de inteligência artificial tenham sido utilizadas como apoio em determinadas atividades de desenvolvimento, **a concepção do MovieGuesser, as decisões fundamentais de Engenharia de Software e o planejamento de sua estrutura foram realizados pela própria equipe**, com base em discussões, conhecimentos técnicos e decisões coletivas.
